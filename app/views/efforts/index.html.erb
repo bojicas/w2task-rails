@@ -1,19 +1,58 @@
 <h2>Listing efforts</h2>
 
-<%= link_to 'New effort', new_effort_path %>
+<p>
+	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>
+</p>
 
-<table>
-<% for effort in @efforts %>
+<h3 style="background:blue; color:white; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Today</h3>
+<table style="vertical-align: top;">
+<% for effort in @efforts_today %>
   <tr>
-    <td><%=h effort.body %></td>
-
+    <td style="padding-right: 10px; width: 300px;"><%=h effort.body %><br /><%=h effort.start %></td>
+		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= pluralize(effort.minutes(effort.start, effort.stop), "minute") %></td>
+		<% if effort.stop %>
+			<td style="padding-left: 10px; padding-right: 10px; background-color:green; color:white; text-align:center;">done</td>
+		<% else %>
+			<td style="padding-left: 10px; padding-right: 10px; background-color:red; color:white; text-align:center;">wip</td>
+		<% end %>
+		
     <td><%= link_to 'Show', effort %></td>
-    <td><%= link_to 'Edit', edit_effort_path(effort) %></td>
+		<% if effort.stop %>
+    	<td><%= link_to 'Edit', edit_effort_path(effort) %></td>
+		<% else %>
+			<td><%= link_to 'Stop', edit_effort_path(effort) %></td>
+		<% end %>
     <td><%= link_to 'Destroy', effort, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<h3 style="background:brown; color:white; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Yesterday</h3>
+<% if @efforts_yestarday.empty? -%>
+	<h4 style="background-color:gray; color:white; margin-top: 0;">No Records</h4>
+<% end %>
+<table style="vertical-align: top;">
+<% for effort in @efforts_yestarday %>
+  <tr>
+    <td style="padding-right: 10px; width: 300px;"><%=h effort.body %></td>
+		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= pluralize(effort.minutes(effort.start, effort.stop), "minute") %></td>
+		<% if effort.stop %>
+			<td style="padding-left: 10px; padding-right: 10px; background-color:green; color:white; text-align:center;">done</td>
+		<% else %>
+			<td style="padding-left: 10px; padding-right: 10px; background-color:red; color:white; text-align:center;">wip</td>
+		<% end %>
+		
+    <td><%= link_to 'Show', effort %></td>
+		<% if effort.stop %>
+    	<td><%= link_to 'Edit', edit_effort_path(effort) %></td>
+		<% else %>
+			<td><%= link_to 'Stop', edit_effort_path(effort) %></td>
+		<% end %>
+    <td><%= link_to 'Destroy', effort, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
 
-<%= link_to 'New effort', new_effort_path %>
+<p>
+	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>
+</p>
