@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   
   session :session_key => '_w2task_session_id' 
   
+  before_filter :login_required
+  
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
