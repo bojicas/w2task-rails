@@ -1,0 +1,24 @@
+<h1>Listing efforts</h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+    <th>Start</th>
+    <th>Stop</th>
+  </tr>
+
+<% for effort in @efforts %>
+  <tr>
+    <td><%=h effort.body %></td>
+    <td><%=h effort.start %></td>
+    <td><%=h effort.stop %></td>
+    <td><%= link_to 'Show', effort %></td>
+    <td><%= link_to 'Edit', edit_effort_path(effort) %></td>
+    <td><%= link_to 'Destroy', effort, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New effort', new_effort_path %>
