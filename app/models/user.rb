@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
-
+  has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "40x40>" }
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
