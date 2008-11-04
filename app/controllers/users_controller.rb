@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
- 
+
   def create
     logout_keeping_session!
-    @user = User.new(params[:user])
+    @user = User.create(params[:user])
     success = @user && @user.save
     if success && @user.errors.empty?
             # Protects against session fixation attacks, causes request forgery
@@ -22,6 +22,29 @@ class UsersController < ApplicationController
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
+    end
+  end
+  
+  # GET /users/2/edit
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  # PUT /users/1
+  # PUT /users/1.xml
+  def update
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'User was successfully updated.'
+        format.html { redirect_to(:action => 'edit') }
+        format.xml  { head :ok }
+      else
+        flash[:error] = 'User was not successfully updated.'
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end
