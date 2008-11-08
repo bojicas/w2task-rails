@@ -3,6 +3,7 @@ require 'config/accelerator/accelerator_tasks'
  
 set :application, "w2task" #matches names used in smf_template.erb
 set :repository,  "git@github.com:bojicas/w2task.git"
+set :local_repository,   "#{File.dirname(__FILE__)}/../" 
  
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
