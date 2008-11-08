@@ -15,15 +15,15 @@
     <dependent name='mongrel_multi-user' restart_on='none' grouping='optional_all'>
       <service_fmri value='svc:/milestone/multi-user'/>
     </dependent>
-    <exec_method name='start' type='method' exec='/opt/csw/bin/mongrel_rails cluster::start' timeout_seconds='60'>
+    <!--<exec_method name='start' type='method' exec='/opt/csw/bin/mongrel_rails cluster::start' timeout_seconds='60'>-->
     <!-- If you're on a new pkgsrc templated accelerator replace the line above with the following line: -->
-    <!--<exec_method name='start' type='method' exec='/opt/local/bin/mongrel_rails cluster::start' timeout_seconds='60'>-->
+    <exec_method name='start' type='method' exec='/opt/local/bin/mongrel_rails cluster::start' timeout_seconds='60'>
       <method_context working_directory='<%= working_directory %>'>
-        <method_credential user='applicationuser' group='applicationdomain' />
+        <method_credential user='w2task' group='w2task' />
         <method_environment>
-          <envvar name='PATH' value='/usr/bin:/bin:/opt/csw/bin' />
+          <!--<envvar name='PATH' value='/usr/bin:/bin:/opt/csw/bin' />-->
           <!-- If you're on a new pkgsrc templated accelerator replace the line above with the following line: -->
-          <!--<envvar name='PATH' value='/usr/bin:/bin:/opt/local/bin' />-->
+          <envvar name='PATH' value='/usr/bin:/bin:/opt/local/bin' />
         </method_environment>
       </method_context>
     </exec_method>
