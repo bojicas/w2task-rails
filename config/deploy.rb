@@ -19,6 +19,7 @@ set :scm, :git
  
 # keep a cached code checkout on the server, and do updates each time (more efficient)
 set :deploy_via, :remote_cache
+set :branch, "master"
  
 # Set the path to svn and rake if needed(Does not seem to be necessary on the newpkgsrc templated accelerators, but if needed change path to /opt/local/bin/ )
 # set :git, "/opt/local/bin/git"
