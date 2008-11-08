@@ -7,9 +7,9 @@ config.cache_classes = true
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
-ObjectSpace.each_object(Mongrel::HttpServer) { |i| @port = i.port }
-raise "Port could not be introspected!" unless @port and @port.to_i > 0
-config.logger = Logger.new File.expand_path(RAILS_ROOT+"/log/#{ENV['RAILS_ENV']}.#{@port}.log")
+#ObjectSpace.each_object(Mongrel::HttpServer) { |i| @port = i.port }
+#raise "Port could not be introspected!" unless @port and @port.to_i > 0
+#config.logger = Logger.new File.expand_path(RAILS_ROOT+"/log/#{ENV['RAILS_ENV']}.#{@port}.log")
 
 # Full error reports are disabled and caching is turned on
 config.action_controller.consider_all_requests_local = false
