@@ -30,7 +30,7 @@ set :domain, '72.2.118.101'
  
 role :app, domain
 role :web, domain
-role :db,  localhost, :primary => true
+role :db,  domain, :primary => true
  
 set :server_name, "staging.bojica.com"
 set :server_alias, "*.staging.bojica.com"
