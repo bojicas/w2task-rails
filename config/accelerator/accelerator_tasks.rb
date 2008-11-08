@@ -33,18 +33,18 @@ Capistrano::Configuration.instance(:must_exist).load do
  
       put buffer, "#{shared_path}/#{application}-apache-vhost.conf"
  
-      sudo "cp #{shared_path}/#{application}-apache-vhost.conf /opt/csw/apache2/etc/virtualhosts/#{application}.conf"
+      # sudo "cp #{shared_path}/#{application}-apache-vhost.conf /opt/csw/apache2/etc/virtualhosts/#{application}.conf"
       # If you're on a new pkgsrc templated accelerator replace the line above with the following line:
-      # sudo "cp #{shared_path}/#{application}-apache-vhost.conf /opt/local/etc/httpd/virtualhosts/#{application}.conf"
+      sudo "cp #{shared_path}/#{application}-apache-vhost.conf /opt/local/etc/httpd/virtualhosts/#{application}.conf"
  
       restart_apache
     end
  
     desc "Restart apache"
     task :restart_apache, :roles => :web do
-      sudo "svcadm refresh svc:/network/http:cswapache2"
+      # sudo "svcadm refresh svc:/network/http:cswapache2"
       # If you're on a new pkgsrc templated accelerator replace the line above with the following line:
-      # sudo "svcadm restart apache"
+      sudo "svcadm restart apache"
     end
  
     desc "Stops the application"
