@@ -16,7 +16,7 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  database: w2task_production
+  database: w2task
   username: root
   password: 39hrf3h4wz
-  host: localhost:3306
+  host: localhost
