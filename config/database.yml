@@ -19,4 +19,4 @@ production:
   database: w2task_production
   username: root
   password: 39hrf3h4wz
-  host: localhost
+  host: localhost:3306
