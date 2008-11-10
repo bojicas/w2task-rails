@@ -8,6 +8,7 @@
 <table style="vertical-align: top;">
 <% for effort in @efforts_today %>
   <tr>
+		<td><%= image_tag effort.user.avatar.url(:thumb) %></td>
     <td style="padding-right: 10px; width: 300px;"><%=h effort.body %><br /><%=h effort.start %></td>
 		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= pluralize(effort.minutes(effort.start, effort.stop), "minute") %></td>
 		<% if effort.stop %>
@@ -34,6 +35,7 @@
 <table style="vertical-align: top;">
 <% for effort in @efforts_yestarday %>
   <tr>
+		<td><%= image_tag effort.user.avatar.url(:thumb) %></td>
     <td style="padding-right: 10px; width: 300px;"><%=h effort.body %></td>
 		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= pluralize(effort.minutes(effort.start, effort.stop), "minute") %></td>
 		<% if effort.stop %>

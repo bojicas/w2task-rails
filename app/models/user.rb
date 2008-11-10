@@ -5,8 +5,14 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-  has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "40x40>" }
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+
+  has_many :efforts
+
+
+  has_attached_file :avatar,
+    :styles => { :medium => "100x100>", :thumb => "40x40>" }
+  validates_attachment_content_type :avatar, 
+    :content_type => ['image/jpeg', 'image/png', 'image/gif']
   validates_attachment_size :avatar, :less_than => 500.kilobytes
 
 
