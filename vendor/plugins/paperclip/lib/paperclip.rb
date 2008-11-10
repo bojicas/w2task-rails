@@ -98,7 +98,8 @@ module Paperclip
     #   as easily point to a directory served directly through Apache as it can to an action
     #   that can control permissions. You can specify the full domain and path, but usually
     #   just an absolute path is sufficient. The leading slash must be included manually for 
-    #   absolute paths. The default value is "/:class/:attachment/:id/:style_:filename". See
+    #   absolute paths. The default value is 
+    #   "/:class/:attachment/:id/:style_:basename.:extension". See
     #   Paperclip::Attachment#interpolate for more information on variable interpolaton.
     #     :url => "/:attachment/:id/:style_:basename:extension"
     #     :url => "http://some.other.host/stuff/:class/:id_:extension"
@@ -182,7 +183,7 @@ module Paperclip
           options[:in] = (0..options[:less_than])
         end
         
-        if attachment.file? && !options[:in].include?(instance[:"#{name}_file_size"].to_i)
+        if attachment.file? && !options[:in].include?(attachment.instance_read(:file_size).to_i)
           min = options[:in].first
           max = options[:in].last
           
@@ -223,7 +224,7 @@ module Paperclip
         
         unless attachment.original_filename.blank?
           unless options[:content_type].blank?
-            content_type = instance[:"#{name}_content_type"]
+            content_type = attachment.instance_read(:content_type)
             unless valid_types.any?{|t| t === content_type }
               options[:message] || "is not one of the allowed file types."
             end
