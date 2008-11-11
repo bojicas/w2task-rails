@@ -29,9 +29,6 @@
 </table>
 
 <h3 style="background:brown; color:white; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Yesterday</h3>
-<% if @efforts_yestarday.empty? -%>
-	<h4 style="background-color:gray; color:white; margin-top: 0;">No Records</h4>
-<% end %>
 <table style="vertical-align: top;">
 <% for effort in @efforts_yestarday %>
   <tr>
