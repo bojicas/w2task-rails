@@ -1,0 +1,35 @@
+body {
+	background-color: lightgray;
+	font-size: 12px;
+}
+
+a, a:visited {
+	color: #5596C4;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+#status-tag-done {
+	float: left;
+	background-color: green; 
+	color: white; 
+	text-align: center; 
+	padding: 3px; 
+	width: 50px;
+	font-size: 12px;
+}
+
+#status-tag-done a {
+	color: white;
+	text-decoration: none;
+} 
+
+#delete-x {
+	float: left;
+	padding: 3px;
+	margin-left: 10px;
+	clear: right;
+}
+
+

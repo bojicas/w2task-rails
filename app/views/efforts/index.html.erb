@@ -4,53 +4,38 @@
 	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>
 </p>
 
-<h3 style="background:blue; color:white; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Today</h3>
-<table style="vertical-align: top;">
+<div style="vertical-align: top; list-style: none; margin:0; padding:0;width:750px; background-color:white;">
+<ul style="list-style: none;margin:0;padding:5px;">
 <% for effort in @efforts_today %>
-  <tr>
-		<td><%= image_tag effort.user.avatar.url(:thumb) %></td>
-    <td style="padding-right: 10px; width: 300px;"><%=h effort.body %><br /><%=h effort.start %></td>
-		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= hh_mm(effort.start, effort.stop) %></td>
+  <li style="margin:0; padding:5px;">
+		<div style="float:left; margin-top:5px;">
+			<%= image_tag effort.user.avatar.url(:thumb), :size => "25x25" %>
+		</div>
+    <div style="float:left; margin-left: 10px; width: 450px;">
+			<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
+			<br />
+			Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
+		</div>
+		<div style="float:left; padding-right: 10px; width: 100px; text-align: right;">
+			<%= hh_mm(effort.start, effort.stop) %>
+		</div>
 		<% if effort.stop %>
-			<td style="padding-left: 10px; padding-right: 10px; background-color:green; color:white; text-align:center;">done</td>
+			<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
 		<% else %>
-			<td style="padding-left: 10px; padding-right: 10px; background-color:red; color:white; text-align:center;">wip</td>
+			<div style="float:left; background-color:red; color:white; text-align:center; padding: 3px; width: 50px;"><%= link_to 'wip', edit_effort_path(effort) %></div>
 		<% end %>
-		
-    <td><%= link_to 'Show', effort %></td>
-		<% if effort.stop %>
-    	<td><%= link_to 'Edit', edit_effort_path(effort) %></td>
-		<% else %>
-			<td><%= link_to 'Stop', edit_effort_path(effort) %></td>
-		<% end %>
-    <td><%= link_to 'Destroy', effort, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<h3 style="background:brown; color:white; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">Yesterday</h3>
-<table style="vertical-align: top;">
-<% for effort in @efforts_yestarday %>
-  <tr>
-		<td><%= image_tag effort.user.avatar.url(:thumb) %></td>
-    <td style="padding-right: 10px; width: 300px;"><%=h effort.body %></td>
-		<td style="padding-right: 10px; width: 100px; text-align: right;"><%= hh_mm(effort.start, effort.stop) %></td>
-		<% if effort.stop %>
-			<td style="padding-left: 10px; padding-right: 10px; background-color:green; color:white; text-align:center;">done</td>
-		<% else %>
-			<td style="padding-left: 10px; padding-right: 10px; background-color:red; color:white; text-align:center;">wip</td>
-		<% end %>
-		
-    <td><%= link_to 'Show', effort %></td>
-		<% if effort.stop %>
-    	<td><%= link_to 'Edit', edit_effort_path(effort) %></td>
-		<% else %>
-			<td><%= link_to 'Stop', edit_effort_path(effort) %></td>
-		<% end %>
-    <td><%= link_to 'Destroy', effort, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+    <div id="delete-x">
+			<%= link_to 'X', effort, 
+				:confirm => 'Are you sure?', 
+				:method => :delete %>
+		</div>
+  </li>
+	<div style="clear:both;border-top: thin dotted #00FF00;">&nbsp;</div>
 <% end %>
-</table>
+</ul>
+</div>
+
 
 <p>
 	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>

@@ -4,11 +4,6 @@ class EffortsController < ApplicationController
   def index
     @efforts_today = Effort.find(:all, 
       :order => "start DESC, stop DESC, body", 
-      :conditions => "start >= '#{Time.today.to_s(:db)}'",
-      :include => :user)
-    @efforts_yestarday = Effort.find(:all, 
-      :order => "start DESC, stop DESC, body", 
-      :conditions => { :start => (1.day.ago(Time.today))...(Time.today-1) },
       :include => :user)
 
     respond_to do |format|
