@@ -52,7 +52,7 @@ class EffortsController < ApplicationController
     respond_to do |format|
       if @effort.save
         flash[:notice] = 'Effort was successfully created.'
-        format.html { redirect_to(:action => :index) }
+        format.html { redirect_to(efforts_url) }
         format.xml  { render :xml => @effort, :status => :created, :location => @effort }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class EffortsController < ApplicationController
     respond_to do |format|
       if @effort.update_attributes(params[:effort])
         flash[:notice] = 'Effort was successfully updated.'
-        format.html { redirect_to(@effort) }
+        format.html { redirect_to(efforts_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
