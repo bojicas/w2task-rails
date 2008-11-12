@@ -1,7 +1,21 @@
 body {
-	background-color: lightgray;
+	background-color: #DDDDDD;
 	font-size: 12px;
+	margin: 0;
 }
+
+#main-menu {
+	background-color: #003366;
+	padding: 10px;
+	color: white;
+}
+
+#logout-menu {
+	color: white;
+	padding: 0;
+	margin: 0;
+}
+
 
 a, a:visited {
 	color: #5596C4;
@@ -12,7 +26,7 @@ a, a:visited {
 
 #status-tag-done {
 	float: left;
-	background-color: green; 
+	background-color: #66CC66; /* a green tone */
 	color: white; 
 	text-align: center; 
 	padding: 3px; 
@@ -23,7 +37,25 @@ a, a:visited {
 #status-tag-done a {
 	color: white;
 	text-decoration: none;
+	font-size: 12px;
 } 
+
+#status-tag-wip {
+	float: left;
+	background-color: #FF9933; /* a red to orange tone */
+	color: white; 
+	text-align: center; 
+	padding: 3px; 
+	width: 50px;
+	font-size: 12px;
+}
+
+#status-tag-wip a {
+	color: white;
+	text-decoration: none;
+	font-size: 12px;
+} 
+
 
 #delete-x {
 	float: left;

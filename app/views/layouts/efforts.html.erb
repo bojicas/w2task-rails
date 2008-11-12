@@ -9,9 +9,47 @@
 </head>
 <body>
 
-<p style="color: green"><%= flash[:notice] %></p>
+<div style="background-color: #5A9ECF; margin: 0;">
+	<div style="float:right; color:white;">Howdy, user! &nbsp; <%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help</div><br />
+	
+	<h1 style="color:white; font-weight:normal; margin-left:10px; padding:0;"><%=h @page_title || "Dashboard" %></h1>
+	<div style="clear:both;">&nbsp;</div>
+	
+	
+	<div style="float:left; margin-left: 10px; padding:0;">
+		<%= link_to 'New effort', new_effort_path, :id => "main-menu" %>
+	&nbsp;
+		<%= link_to 'Reload', efforts_url, :id => "main-menu" %>
+	</div>
+	<div style = "background-color: #003366; clear:both; height:5px; padding-top:3px;"><br /></div>
+</div>
 
-<%= yield  %>
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+
+<div style="width:1010px; margin:0; padding:0;">
+	<div style="float:right; width: 235px; margin:0; padding:0; color:grey;">
+		PROJECTS:
+	</div>
+	
+	<div style="vertical-align: top; list-style: none; margin: 10px; padding:0;width:750px; background-color:white;">
+		<%= yield  %>
+	</div>
+</div>
+
+<div style="float:left;background-color: #CCCCCC; width:750px; text-align:center; margin:10px;">
+	<div style="float:left;width:650px;">
+		<br />&copy; 2008 w2task.com. Programming by Silviu D. Bojica
+		<br />All rights reserved.
+		<br /><br />
+	</div>
+	<div style="float:right; margin-right:10px;">
+		<br />
+		<a href="http://www.joyent.com" alt="Accelerated by Joyent"><img src="http://joyent.bingodisk.com/bingo/public/badges/88x31-acceleratedByJoyent-L.png" width="88" height="31" border="0" /></a>
+	</div>
+</div>
+
+<div style="clear: both;"></div>
 
 </body>
 </html>

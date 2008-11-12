@@ -1,28 +1,59 @@
-<h2>Listing efforts</h2>
+<div style="background-color:#FFFFFF;">
+	<div style="float:left; width:180px;">
+		&nbsp;<br />
+		Billable:<br />
+		Non-billable:
+	</div>
+	<div style="float:left; width:180px;">
+		<strong>Today:</strong><br />
+		34h<br />
+		30h
+	</div>
+	<div style="float:left; width:180px;">
+		<strong>This week:</strong><br />
+		34h<br />
+		30h
+	</div>
+	<div style="float:left; width:180px;">
+		<strong>This month:</strong><br />
+		34h<br />
+		30h
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<div style="background-color:#FFFFFF;">
+	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
+		<strong>Total:</strong>
+	</div>
+	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
+	</div>
+	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
+	</div>
+	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
+	</div>
+	<div style="clear:both;"></div>
+</div>
 
-<p>
-	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>
-</p>
+<div style="clear:both;border-top: thin dotted #DDDDDD;">&nbsp;</div>
 
-<div style="vertical-align: top; list-style: none; margin:0; padding:0;width:750px; background-color:white;">
 <ul style="list-style: none;margin:0;padding:5px;">
 <% for effort in @efforts_today %>
   <li style="margin:0; padding:5px;">
 		<div style="float:left; margin-top:5px;">
 			<%= image_tag effort.user.avatar.url(:thumb), :size => "25x25" %>
 		</div>
-    <div style="float:left; margin-left: 10px; width: 450px;">
+    <div style="float:left; margin-left: 10px; margin-bottom: 10px; width: 495px; font-size: 12px;">
 			<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
 			<br />
 			Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
 		</div>
-		<div style="float:left; padding-right: 10px; width: 100px; text-align: right;">
+		<div style="float:left; margin-right:10px; padding: 3px; width: 100px; text-align: right; font-size: 12px;">
 			<%= hh_mm(effort.start, effort.stop) %>
 		</div>
 		<% if effort.stop %>
 			<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
 		<% else %>
-			<div style="float:left; background-color:red; color:white; text-align:center; padding: 3px; width: 50px;"><%= link_to 'wip', edit_effort_path(effort) %></div>
+			<div id = "status-tag-wip"><%= link_to 'wip', edit_effort_path(effort) %></div>
 		<% end %>
 
     <div id="delete-x">
@@ -31,12 +62,7 @@
 				:method => :delete %>
 		</div>
   </li>
-	<div style="clear:both;border-top: thin dotted #00FF00;">&nbsp;</div>
+	<div style="clear:both;border-top: thin dotted #DDDDDD;">&nbsp;</div>
 <% end %>
 </ul>
-</div>
 
-
-<p>
-	<%= link_to 'New effort', new_effort_path %> | <%= link_to "Refresh", :controller => "efforts" %>
-</p>

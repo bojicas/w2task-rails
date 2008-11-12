@@ -2,6 +2,8 @@ class EffortsController < ApplicationController
   # GET /efforts
   # GET /efforts.xml
   def index
+    @page_title = "Listing efforts"
+    
     @efforts_today = Effort.find(:all, 
       :order => "start DESC, stop DESC, body", 
       :include => :user)
