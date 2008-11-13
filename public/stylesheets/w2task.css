@@ -5,8 +5,8 @@ body {
 }
 
 #main-menu {
-	background-color: #003366;
-	padding: 10px;
+	background-color: #1A4F85; /*blue shade of the main menu */
+	padding: 7px;
 	color: white;
 }
 
@@ -59,7 +59,8 @@ a, a:visited {
 
 #delete-x {
 	float: left;
-	padding: 3px;
+	padding: 0;
+	margin-top: 4px;
 	margin-left: 10px;
 	clear: right;
 }
