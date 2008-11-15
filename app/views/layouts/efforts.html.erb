@@ -10,7 +10,7 @@
 <body>
 
 <div style="background-color: #5A9ECF; margin: 0;">
-	<div style="float:right; color:white; padding-right:15px;">Howdy, user! &nbsp; <%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help</div><br />
+	<div style="float:right; color:white; padding-right:15px;">Howdy, you are logged as <em><%= session[:user_login] %></em>! &nbsp; <%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help</div><br />
 	
 	<h1 style="color:white; font-weight:normal; margin:0; margin-left:15px; padding:0;"><%=h @page_title || "Dashboard" %></h1>
 	<div style="clear:both;">&nbsp;</div>
