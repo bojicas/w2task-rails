@@ -4,6 +4,8 @@ class EffortsController < ApplicationController
   def index
     @page_title = "Listing efforts"
     
+    session[:user_login] = User.find_by_id(session[:user_id]).login
+    
     @efforts_today = Effort.find(:all, 
       :order => "start DESC, stop DESC, body", 
       :include => :user)

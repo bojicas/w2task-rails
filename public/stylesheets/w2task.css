@@ -1,29 +1,134 @@
+/* SHARED >>> */
 body {
 	background-color: #DDDDDD;
 	font-size: 12px;
 	margin: 0;
 }
-
-#main-menu {
-	background-color: #1A4F85; /*blue shade of the main menu */
-	padding: 7px;
-	color: white;
+#clear-both {
+	clear:both;	
 }
-
-#logout-menu {
-	color: white;
-	padding: 0;
-	margin: 0;
+#clear-both-top-dotted {
+	clear:both;	
+	border-top: thin dotted #DDDDDD;
 }
-
-
-a, a:visited {
-	color: #5596C4;
+a, a:visited, a:hover {
+	color: #5596C4; /* blue color of the links */
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 12px;
 }
+/* <<< SHARED */
 
+
+/* HEADER >>> */
+#header-wrapper {
+	background-color: #5A9ECF;
+	margin: 0;
+}
+#header-wrapper h1 {
+	color: white;
+	font-weight: normal;
+	margin: 0 0 0 15px;
+	padding:0;
+}
+#admin-menu {
+	float: right;
+	color:white;
+	padding: 2px 10px 0 0;
+	font-weight: normal;
+}
+#admin-menu a {
+	color: white;
+	font-weight: normal;
+}
+#main-menu-wrapper {
+	float: left;
+	margin-left: 15px;
+	padding:2px;
+}
+#main-menu {
+	background-color: #1A4F85; /*blue shade of the main menu */
+	padding: 10px;
+	color: white;
+}
+/* <<< HEADER */
+
+
+/* WORKSPACE >>> */
+/* WORKSPACE-WRAPPER >>> */
+#workspace-wrapper {
+	list-style: none;
+	margin: 15px;
+	padding:0;
+	min-width: 725px; 
+	width: 70%;
+	background-color:white; 
+	float:left;
+}
+/* <<< WORKSPACE-WRAPPER */
+/* WORKSPACE-HEADER1 >>> */
+#workspace-header1 {
+	clear: both;
+	/* border: thin dotted #DDDDDD; */
+	background-color: #1A4F85;
+	color: white;
+	padding: 10px;
+}
+/* <<< WORKSPACE-HEADER1 */
+/* WORKSPACE-BODY >>> */
+#workspace-body {
+	margin: 0;
+	padding: 0;
+}
+#workspace-body ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 5px;
+} 
+#workspace-body #avatar {
+	float: left;
+	margin-top:5px;
+}
+#workspace-body #text {
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	min-width: 470px; 
+	font-size: 12px;
+}
+#right {
+	float: right;
+}
+#duration {
+	float: left;
+	margin-right: 10px;
+	padding: 3px;
+	width: 100px;
+	text-align: right;
+	font-size: 12px;
+}
+/* <<< WORKSPACE-BODY */
+/* ICONS >>> */
+#blue-icons {
+	color: white;
+	text-decoration: none;
+	float: right;
+}
+#blue-icons img {
+	border: none;	
+}
+#delete-icon {
+	float: left;
+	padding: 0;
+	margin-top: 4px;
+	margin-left: 10px;
+	clear: right;
+}
+#delete-icon img {
+	border: none;
+}
+/* <<< ICONS */
+/* TAGS >>> */
 #status-tag-done {
 	float: left;
 	background-color: #66CC66; /* a green tone */
@@ -33,13 +138,11 @@ a, a:visited {
 	width: 50px;
 	font-size: 12px;
 }
-
 #status-tag-done a {
 	color: white;
 	text-decoration: none;
 	font-size: 12px;
 } 
-
 #status-tag-wip {
 	float: left;
 	background-color: #FF9933; /* a red to orange tone */
@@ -49,20 +152,43 @@ a, a:visited {
 	width: 50px;
 	font-size: 12px;
 }
-
 #status-tag-wip a {
 	color: white;
 	text-decoration: none;
 	font-size: 12px;
-} 
-
-
-#delete-x {
-	float: left;
-	padding: 0;
-	margin-top: 4px;
-	margin-left: 10px;
-	clear: right;
 }
+/* <<< TAGS */
+/* <<< WORKSPACE */
+
+
+/* SIDEBAR >>>*/
+/* SIDEBAR-WRAPPER >>> */
+#sidebar-wrapper {
+	min-width: 245px;
+	margin: 0px;
+	padding: 0px;
+	color: grey;
+	float: left;
+}
+/* <<< SIDEBAR-WRAPPER */
+/* FLASH >>> */
+#flash-wrapper {
+	background-color: #FFFF99;
+	margin: 0;
+	padding: 0;
+	min-width: 235px;
+}
+#flash-notice {
+	color: green;
+	font-weight: bold;
+	text-align: center;
+}
+#flash-error {
+	color: red;
+	font-weight: bold;
+	text-align: center;
+}
+/* <<< FLASH */
+/* <<< SIDEBAR */
 
 

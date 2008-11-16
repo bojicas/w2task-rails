@@ -4,50 +4,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Efforts: <%= controller.action_name %></title>
+  <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold', 'w2task' %>
 </head>
 <body>
 
-<div style="background-color: #5A9ECF; margin: 0;">
-	<div style="float:right; color:white; padding-right:15px;">Howdy, you are logged as <em><%= session[:user_login] %></em>! &nbsp; <%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help</div><br />
-	
-	<h1 style="color:white; font-weight:normal; margin:0; margin-left:15px; padding:0;"><%=h @page_title || "Dashboard" %></h1>
-	<div style="clear:both;">&nbsp;</div>
-	
-	
-	<div style="float:left; margin-left: 15px; padding:0;">
-		<%= link_to 'Efforts', efforts_url, :id => "main-menu" %>
-	</div>
-	<div style = "background-color: #1A4F85; clear:both; height:5px; padding-top:3px;"><br /></div>
-</div>
-
-<p style="color: green"><%= flash[:notice] %></p>
-<p style="color: red"><%= flash[:error] %></p>
-
-<div style="width:1010px; margin:0; padding:0;">
-	<div style="float:right; width: 235px; margin:0; padding:0; color:grey;">
-		PROJECTS:
-	</div>
-	
-	<div style="vertical-align: top; list-style: none; margin: 15px; padding:0;width:750px; background-color:white;">
-		<%= yield  %>
-	</div>
-</div>
-
-<div style="float:left;background-color: #CCCCCC; width:750px; text-align:center; margin:15px;">
-	<div style="float:left;width:650px;">
-		<br />&copy; 2008 w2task.com. Programming by Silviu D. Bojica
-		<br />All rights reserved.
-		<br /><br />
-	</div>
-	<div style="float:right; margin-right:10px;">
+	<%# >>> HEADER-WRAPPER %>
+	<div id="header-wrapper">
+		<div id="admin-menu">
+			Howdy, you are logged as 
+			<em><%= session[:user_login] %></em>! &nbsp;
+			<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help
+		</div>
 		<br />
-		<a href="http://www.joyent.com" alt="Accelerated by Joyent"><img src="http://joyent.bingodisk.com/bingo/public/badges/88x31-acceleratedByJoyent-L.png" width="88" height="31" border="0" /></a>
+		<h1><%=h @page_title || "Dashboard" %></h1>
+		<div id="clear-both">&nbsp;</div>
+		<div id="main-menu-wrapper">
+			<%= link_to 'Efforts', efforts_url, :id => "main-menu" %>
+		</div>
+		<div style = "background-color: #1A4F85; clear:both; height:5px; padding-top:3px;"><br /></div>
 	</div>
-</div>
+	<%# <<< HEADER-WRAPPER %>
 
-<div style="clear: both;"></div>
+	<div style="min-width:1024px; margin:0; padding:0;">
+			
+		<%# WORKSPACE-WRAPPER >>> %>
+		<div id="workspace-wrapper">
+			<%= yield %>
+		</div>
+		<%# <<< WORKSPACE-WRAPPER %>
+		
+		<%# >>> SIDEBAR-WRAPPER %>
+		<div id="sidebar-wrapper">
+			<div id="flash-wrapper">
+			<p id="flash-notice"><%= flash[:notice] %></p>
+			<p id="flash-error"><%= flash[:error] %></p>
+			</div>
+			<%= yield :sidebar %>
+		</div>
+		<%# <<< SIDEBAR-WRAPPER %>
 
+	</div>
+
+	<div id="clear-both"></div>
+	<div style="text-align:left; margin-left:15px;">
+		&copy; 2008 w2task.com. All rights reserved<br />
+		Programming by Silviu D. Bojica<br /><br />
+	</div>
 </body>
 </html>

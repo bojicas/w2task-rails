@@ -1,90 +1,46 @@
-<div style="background-color:#1A4F85; color:white;padding: 10px;">
-	<div style="float:right;">
-		<%= link_to image_tag('/images/001_04.png', :size => "16x16"), 
-			efforts_url, 
-			:id => "main-menu" %>
+<div id="workspace-header1">
+	<div id="blue-icons">
+		<%# New Effort %>
+		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_effort_path %>
+		<%# Find Effort %>
+		&nbsp; <%= link_to image_tag('/images/001_38.png', :size => "16x16"), efforts_url %>
 	</div>
-	<div style="background-color:#1A4F85; color:white;"><strong>Statistics</strong></div>
+	<%# workspace-header1 title %>
+	<strong>Efforts</strong>
 </div>
 
-<div style="background-color:#EFEFEF;">
-	<br />
-	<div style="float:left; width:180px; margin-left: 15px;">
-		&nbsp;<br />
-		Billable:<br />
-		Non-billable:
-	</div>
-	<div style="float:left; width:180px;">
-		<strong>Today:</strong><br />
-		34h<br />
-		30h
-	</div>
-	<div style="float:left; width:180px;">
-		<strong>This week:</strong><br />
-		34h<br />
-		30h
-	</div>
-	<div style="float:left; width:180px;">
-		<strong>This month:</strong><br />
-		34h<br />
-		30h
-	</div>
-	<div style="clear:both;"></div>
-</div>
-<div style="background-color:#EFEFEF;">
-	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;  margin-left: 15px;">
-		<strong>Total:</strong>
-	</div>
-	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
-	</div>
-	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
-	</div>
-	<div style="float:left; width:180px; border-top: thin dotted #DDDDDD;">
-	</div>
-	<div style="clear:both;"><br /></div>
-</div>
+<div id="workspace-body">
+	<ul>
+	<% for effort in @efforts_today %>
+	  <li>
+			<div id="avatar">
+				<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
+			</div>
+	    <div id="text">
+				<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
+				<br />
+				Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
+			</div>
+			<div id="right">
+				<div id="duration">
+					<%= hh_mm(effort.start, effort.stop) %>
+				</div>
+				<% if effort.stop %>
+					<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
+				<% else %>
+				<div id = "status-tag-wip"><%= link_to 'wip', edit_effort_path(effort) %></div>
+				<% end %>
 
-<div style="clear:both;border-top: thin dotted #DDDDDD; background-color:#1A4F85; color:white;padding: 10px;">
-	<div style="float:right;">
-		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), 
-			new_effort_path, 
-			:id => "main-menu" %>
-		&nbsp;
-		<%= link_to image_tag('/images/001_38.png', :size => "16x16"),
-			efforts_url,
-			:id => "main-menu" %>
-	</div>
-	<div style="margin:0; padding:0;"><strong>Efforts</strong> </div>		
+		    <div id="delete-icon">
+					<%= link_to image_tag('/images/001_02.png', :size => '16x16'), 
+						effort, 
+						:confirm => 'Are you sure?', 
+						:method => :delete %>
+				</div>
+			</div>
+	  </li>
+		<div id="clear-both-top-dotted">&nbsp;</div>
+	<% end %>
+	</ul>
 </div>
-
-<ul style="list-style: none;margin:0;padding:5px;">
-<% for effort in @efforts_today %>
-  <li style="margin:0; padding:5px;">
-		<div style="float:left; margin-top:5px;">
-			<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
-		</div>
-    <div style="float:left; margin-left: 10px; margin-bottom: 10px; width: 492px; font-size: 12px;">
-			<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
-			<br />
-			Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
-		</div>
-		<div style="float:left; margin-right:10px; padding: 3px; width: 100px; text-align: right; font-size: 12px;">
-			<%= hh_mm(effort.start, effort.stop) %>
-		</div>
-		<% if effort.stop %>
-			<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
-		<% else %>
-			<div id = "status-tag-wip"><%= link_to 'wip', edit_effort_path(effort) %></div>
-		<% end %>
-
-    <div id="delete-x">
-			<%= link_to image_tag('/images/001_02.png', :size => '16x16'), 
-				effort, 
-				:confirm => 'Are you sure?', 
-				:method => :delete %>
-		</div>
-  </li>
-	<div style="clear:both;border-top: thin dotted #DDDDDD;">&nbsp;</div>
-<% end %>
-</ul>
 
