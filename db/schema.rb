@@ -9,7 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081109115724) do
+ActiveRecord::Schema.define(:version => 20081118180400) do
+
+  create_table "countries", :force => true do |t|
+    t.string  "name"
+    t.boolean "special", :default => false
+  end
 
   create_table "efforts", :force => true do |t|
     t.text     "body"
