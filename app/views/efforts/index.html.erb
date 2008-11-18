@@ -11,7 +11,7 @@
 
 <div id="workspace-body">
 	<ul>
-	<% for effort in @efforts_today %>
+	<% for effort in @efforts %>
 	  <li>
 			<div id="avatar">
 				<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
@@ -42,5 +42,6 @@
 		<div id="clear-both-top-dotted">&nbsp;</div>
 	<% end %>
 	</ul>
+	<%= will_paginate @Efforts %>
 </div>
 
