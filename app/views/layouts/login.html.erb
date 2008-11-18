@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold', 'w2task' %>
+</head>
+<body>
+
+	<%# >>> HEADER-WRAPPER %>
+	<div id="header-wrapper">
+		<br />
+		<h1>w2task beta</h1>
+		<div id="clear-both">&nbsp;</div>
+		<div style = "background-color: #1A4F85; clear:both; height:5px; padding-top:3px;"><br /></div>
+	</div>
+	<%# <<< HEADER-WRAPPER %>
+
+	<div style="min-width:1024px; margin:0; padding:0;">
+			
+		<%# WORKSPACE-WRAPPER >>> %>
+		<div id="workspace-wrapper">
+			<%= yield %>
+		</div>
+		<%# <<< WORKSPACE-WRAPPER %>
+		
+		<%# >>> SIDEBAR-WRAPPER %>
+		<div id="sidebar-wrapper">
+			<div id="flash-wrapper">
+			<p id="flash-notice"><%= flash[:notice] %></p>
+			<p id="flash-error"><%= flash[:error] %></p>
+			</div>
+			<%= yield :sidebar %>
+		</div>
+		<%# <<< SIDEBAR-WRAPPER %>
+
+	</div>
+
+	<div id="clear-both"></div>
+	<div style="text-align:left; margin-left:15px;">
+		&copy; 2008 w2task.com. All rights reserved<br />
+		Programming by Silviu D. Bojica<br /><br />
+	</div>
+</body>
+</html>

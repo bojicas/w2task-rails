@@ -1,15 +1,36 @@
-<h1>Log In</h1>
+<div id="workspace-header1">
+	<strong>Welcome to <em>w2task beta</em> - 
+	Your Web 2.0 Task Manager</strong>
+</div>
 
-<% form_tag session_path do -%>
-<p><%= label_tag 'login' %><br />
-<%= text_field_tag 'login', @login %></p>
+<div style="padding:15px;">
+	<p>
+		<div style="float:left; padding: 0 10px 10px 0;"><%= image_tag("w2task_01.png") %></div>
+		Things will get clearer and clearer after we'll add more functionality. However, Should you have any questions, don't send me your queries at <em>bojicas - no spam at gmail dot com</em>, quoting <em>[w2task beta]</em> in your message subject line.
+	</p>
 
-<p><%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %></p>
+	<p>
+		Lore ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat voluptat. Lore ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat voluptat.
+	</p>
+	</div>
 
-<!-- Uncomment this if you want this functionality -->
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+<% content_for(:sidebar) do %>
+	<div id="flash-wrapper1">
+		<% form_tag session_path do -%>
+			<fieldset>
+				<legend id="legend"><strong>Member? Please, log in!</strong></legend>
+				<p><%= label_tag 'login' %><br />
+				<%= text_field_tag 'login', @login %></p>
 
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+				<p><%= label_tag 'password' %><br/>
+				<%= password_field_tag 'password', nil %></p>
+
+				<!-- Uncomment this if you want this functionality -->
+				<p><%= label_tag 'remember_me', 'Remember me' %>
+				<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+
+				<p><%= submit_tag 'Log in' %></p>
+			</fieldset>
+		<% end -%>
+	</div>
+<% end %>

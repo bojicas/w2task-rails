@@ -4,6 +4,31 @@ body {
 	font-size: 12px;
 	margin: 0;
 }
+fieldset {
+  padding-left: 38px;
+	border:1px solid #1A4F85;
+	background-color: #FFFF99;
+	color: #1A4F85;
+ }
+/*
+label {
+  float:left;
+  width:25%;
+  margin-right:0.5em;
+  padding-top:0.2em;
+  text-align:right;
+  font-weight:bold;
+	font-size:1px;
+}
+*/
+legend {
+  padding: 0.2em 0.5em;
+  border:1px solid #1A4F85;
+	background-color: #5A9ECF;
+  color: white;
+  font-size:90%;
+}
+
 #clear-both {
 	clear:both;	
 }
