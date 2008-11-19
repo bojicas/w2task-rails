@@ -66,10 +66,15 @@ a, a:visited, a:hover {
 	color: white;
 	font-weight: normal;
 }
-#main-menu-wrapper {
+#main-menu-left-wrapper {
 	float: left;
 	margin-left: 15px;
-	padding:2px;
+	padding: 2px;
+}
+#main-menu-right-wrapper {
+	float: right;
+	margin-right: 15px;
+	padding: 2px;
 }
 #main-menu {
 	background-color: #1A4F85; /*blue shade of the main menu */

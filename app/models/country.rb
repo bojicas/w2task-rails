@@ -12,5 +12,5 @@ class Country < ActiveRecord::Base
   def self.find_for_select 
     find_ordered.collect { |record| [record.name, record.id] } 
   end 
-  
+  #Project.find(:all).map {|u| ["#{u.name}", u.id]}
 end
