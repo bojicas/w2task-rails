@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081120071152) do
+ActiveRecord::Schema.define(:version => 20081120080653) do
 
   create_table "businesses", :force => true do |t|
     t.string   "nick"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20081120071152) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "countries", :force => true do |t|
@@ -45,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20081120071152) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
+  create_table "user_associations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "business_id"
+    t.boolean  "administrator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100, :default => ""
@@ -59,7 +66,6 @@ ActiveRecord::Schema.define(:version => 20081120071152) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "business_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
