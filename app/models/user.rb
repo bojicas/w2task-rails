@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
 
   has_many :efforts
-  has_many :businesses, :through => 
+  has_many :businesses, :through => :user_associations
+  has_many :user_associations
 
 
   has_attached_file :avatar,

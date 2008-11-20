@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20081120080653) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "countries", :force => true do |t|
@@ -67,7 +66,6 @@ ActiveRecord::Schema.define(:version => 20081120080653) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "business_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
