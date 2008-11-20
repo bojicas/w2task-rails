@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-
   has_many :efforts
-
+  belongs_to :business
 
   has_attached_file :avatar,
     :styles => { :medium => "100x100>", :thumb => "40x40>" }

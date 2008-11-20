@@ -18,6 +18,7 @@
   <p>
     <%= f.label :country_id %><br />
 		<%= f.select :country_id, Country.find_for_select %>
+		<%= f.hidden_field :user_id, :value => session[:user_id] %>
   </p>
   <p>
     <%= f.submit "Create" %>
