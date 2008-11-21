@@ -1,4 +1,5 @@
 class Country < ActiveRecord::Base
+  has_many :businesses
   
   ## 
   # Find all countries in a special order. 
@@ -13,4 +14,5 @@ class Country < ActiveRecord::Base
     find_ordered.collect { |record| [record.name, record.id] } 
   end 
   #Project.find(:all).map {|u| ["#{u.name}", u.id]}
+  
 end

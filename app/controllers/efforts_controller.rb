@@ -5,10 +5,10 @@ class EffortsController < ApplicationController
     @page_title = "Listing efforts"
     
     session[:user_login] = User.find_by_id(session[:user_id]).login
+    #session[:business_id] ||= UserAssociation.find_by_user_id(session[:user_id]).business_id
     
     @efforts = Effort.paginate(:all, 
       :order => "start DESC, stop DESC, body", 
-      :include => :user,
       :page => params[:page],
       :per_page => 10 )
 

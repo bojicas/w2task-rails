@@ -2,12 +2,7 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.xml
   def index
-    @businesses = Business.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @businesses }
-    end
+    redirect_to(:controller => "administration")
   end
 
   # GET /businesses/1
@@ -25,6 +20,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/new.xml
   def new
     @business = Business.new
+    @business.user_associations.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +37,7 @@ class BusinessesController < ApplicationController
   # POST /businesses.xml
   def create
     @business = Business.new(params[:business])
+    #@user_association = UserAssociation.new(params[:user_associations])
 
     respond_to do |format|
       if @business.save
