@@ -24,3 +24,7 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+# Keeping session data accross subdomains
+ActionController::Base.session_options[:session_domain] = '.staging.bojica.com'
+

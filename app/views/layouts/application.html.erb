@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %></title>
+  <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %> - <%= current_subdomain %></title>
   <%= stylesheet_link_tag 'scaffold', 'w2task' %>
 </head>
 <body>
@@ -17,7 +17,7 @@
 			<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help
 		</div>
 		<br />
-		<h1><%=h @page_title || "Dashboard" %></h1>
+		<h1><%=h session[:business_name] %> - <%=h @page_title || "Dashboard" %></h1>
 		<div id="clear-both">&nbsp;</div>
 		<div id="main-menu-left-wrapper">
 			<%= link_to 'Efforts', efforts_url, :id => "main-menu" %>

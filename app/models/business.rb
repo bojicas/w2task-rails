@@ -3,6 +3,7 @@ class Business < ActiveRecord::Base
   belongs_to :country
   has_many :users, :through => :user_associations
   has_many :user_associations, :dependent => :destroy
+  has_many :efforts
   
   validates_presence_of :nick, :name, :country_id
   validates_numericality_of :country_id

@@ -1,17 +1,18 @@
 class EffortsController < ApplicationController
+
+  before_filter :load_business_and_assign_to_user
+
   # GET /efforts
   # GET /efforts.xml
   def index
     @page_title = "Listing efforts"
-    
-    session[:user_login] = User.find_by_id(session[:user_id]).login
-    #session[:business_id] ||= UserAssociation.find_by_user_id(session[:user_id]).business_id
-    
+
     @efforts = Effort.paginate(:all, 
       :order => "start DESC, stop DESC, body", 
+      :conditions => ["business_id = ?", @business.id],
       :page => params[:page],
       :per_page => 10 )
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @efforts }

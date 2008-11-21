@@ -10,8 +10,8 @@
 	<ul>
 		<% for business in @businesses %>
 			<%= link_to business.nick, business %> /
-	    <%=h business.name %> - <%= business.country.name %></td>
-	    <%= link_to 'Show', business %> |
+	    <%=h business.name %> - <%= business.country.name %>
+	    <%= link_to 'Select', efforts_path(:subdomain => business.nick) %> |
 	    <%= link_to 'Edit', edit_business_path(business) %> |
 	    <%= link_to 'Destroy', business, :confirm => 'Are you sure?', :method => :delete %>
 			<br />

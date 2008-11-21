@@ -21,11 +21,20 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   private
-  def load_efforts
-    # TODO, based on subdomain.
-    @efforts = Effort.paginate(:all, 
-      :order => "start DESC, stop DESC, body", 
-      :page => params[:page],
-      :per_page => 10 )
+  
+  def load_business_and_assign_to_user
+    @business = Business.find_by_nick(current_subdomain,
+      :joins => :user_associations,
+      :conditions => ["user_id = ?", session[:user_id]])
+    
+    session[:user_login] = User.find_by_id(session[:user_id]).login
+      
+    if @business.nil?
+      flash[:error] = "You are not autorized to access<br />this business data or<br />business does not exists!"
+      session[:business_name] = "No business!"
+      redirect_to :controller => :administration, :action => :index
+    else
+      session[:business_name] = @business.name 
+    end
   end
 end
