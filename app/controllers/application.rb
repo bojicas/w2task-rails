@@ -23,5 +23,9 @@ class ApplicationController < ActionController::Base
   private
   def load_efforts
     # TODO, based on subdomain.
+    @efforts = Effort.paginate(:all, 
+      :order => "start DESC, stop DESC, body", 
+      :page => params[:page],
+      :per_page => 10 )
   end
 end
