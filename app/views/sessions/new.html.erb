@@ -21,6 +21,7 @@
 		<% form_tag session_path do -%>
 			<fieldset>
 				<legend id="legend"><strong>Member? Please, log in!</strong></legend>
+				<p><%= request.subdomains.inspect %></p>
 				<p><%= label_tag 'login' %><br />
 				<%= text_field_tag 'login', @login %></p>
 

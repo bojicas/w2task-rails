@@ -6,6 +6,7 @@ class Business < ActiveRecord::Base
   
   validates_presence_of :nick, :name, :country_id
   validates_numericality_of :country_id
+  validates_uniqueness_of :nick
  
   def user_association_attributes=(user_association_attributes)
     user_associations.build(user_association_attributes)
