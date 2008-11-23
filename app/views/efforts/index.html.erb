@@ -1,47 +1,28 @@
-<div id="workspace-header1">
+<div id="workspace-header1" style="background-color: #303030;">
 	<div id="blue-icons">
 		<%# New Effort %>
-		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_effort_path %>
+		<%= link_to_remote image_tag('/images/001_01.png', :size => "16x16"),
+			{ :url => { :action => "new" } }, 
+			{ :href => url_for(:action => :new) }
+		%>
+
 		<%# Find Effort %>
-		&nbsp; <%= link_to image_tag('/images/001_38.png', :size => "16x16"), efforts_url %>
+		&nbsp; <%= link_to_remote image_tag('/images/001_38.png', :size => "16x16"), :url => { :action => :new }, :update => 'neweffort' %>
 	</div>
 	<%# workspace-header1 title %>
-	<strong>Efforts</strong>
+	<div id="efforttitle"><strong>Efforts</strong></div>
 </div>
 
-<div id="workspace-body">
-	<ul>
-	<% for effort in @efforts %>
-	  <li>
-			<div id="avatar">
-				<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
-			</div>
-	    <div id="text">
-				<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
-				<br />
-				Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
-			</div>
-			<div id="right">
-				<div id="duration">
-					<%= hh_mm(effort.start, effort.stop) %>
-				</div>
-				<% if effort.stop %>
-					<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
-				<% else %>
-				<div id = "status-tag-wip"><%= link_to 'wip', edit_effort_path(effort) %></div>
-				<% end %>
 
-		    <div id="delete-icon">
-					<%= link_to image_tag('/images/001_02.png', :size => '16x16'), 
-						effort, 
-						:confirm => 'Are you sure?', 
-						:method => :delete %>
-				</div>
-			</div>
-	  </li>
-		<div id="clear-both-top-dotted">&nbsp;</div>
-	<% end %>
-	</ul>
-	<%= will_paginate @Efforts %>
+<div id="workspace-body">
+	<div id="neweffort" style="padding:0px; background-color:#5A9ECF; height:auto; overflow:auto;border-bottom:thin dotted #FFFFFF; color:white;">
+		<%#= render :action => "new" %>
+	</div>
+	
+	<div id="clear-both"></div>
+
+	<div id="listefforts">
+		<%= render :partial => "index" %>
+	</div>
 </div>
 

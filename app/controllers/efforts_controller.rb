@@ -7,14 +7,12 @@ class EffortsController < ApplicationController
   def index
     @page_title = "Listing efforts"
 
-    @efforts = Effort.paginate(:all, 
-      :order => "start DESC, stop DESC, body", 
-      :conditions => ["business_id = ?", @business.id],
-      :page => params[:page],
-      :per_page => 10 )
+    @efforts = get_efforts
+    @effort = Effort.new
     
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.xml  { render :xml => @efforts }
     end
   end
@@ -32,11 +30,13 @@ class EffortsController < ApplicationController
 
   # GET /efforts/new
   # GET /efforts/new.xml
-  def new
+  def new    
     @effort = Effort.new
-
+    @efforts = get_efforts
+    
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.xml  { render :xml => @effort }
     end
   end
@@ -44,20 +44,30 @@ class EffortsController < ApplicationController
   # GET /efforts/1/edit
   def edit
     @effort = Effort.find(params[:id])
+    respond_to do |format|
+      format.js if request.xhr?
+      format.html # new.html.erb
+      format.xml  { render :xml => @effort }
+    end
   end
 
   # POST /efforts
   # POST /efforts.xml
   def create
     @effort = Effort.new(params[:effort])
-
+    
     respond_to do |format|
       if @effort.save
         flash[:notice] = 'Effort was successfully created.'
         format.html { redirect_to(efforts_url) }
+        @efforts = get_efforts
+        format.js
         format.xml  { render :xml => @effort, :status => :created, :location => @effort }
       else
+        flash[:error] = 'Cannot create effort.'
         format.html { render :action => "new" }
+        @efforts = get_efforts
+        format.js
         format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
       end
     end
@@ -90,5 +100,16 @@ class EffortsController < ApplicationController
       format.html { redirect_to(efforts_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  
+  def get_efforts
+    efforts = Effort.paginate(:all, 
+      :order => "start DESC, updated_at DESC, stop DESC, body", 
+      :conditions => ["business_id = ?", @business.id],
+      :page => params[:page],
+      :per_page => 10 )
+    efforts
   end
 end

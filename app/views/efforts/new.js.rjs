@@ -1,0 +1,4 @@
+page.replace_html :neweffort, :partial => "new"
+page.replace_html :efforttitle, "<strong>Add new efforts</strong>"
+
+
