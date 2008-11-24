@@ -165,7 +165,7 @@ a, a:visited, a:hover {
 	color: white; 
 	text-align: center; 
 	padding: 3px; 
-	width: 50px;
+	width: 60px;
 	font-size: 12px;
 }
 #status-tag-done a {
@@ -179,7 +179,7 @@ a, a:visited, a:hover {
 	color: white; 
 	text-align: center; 
 	padding: 3px; 
-	width: 50px;
+	width: 60px;
 	font-size: 12px;
 }
 #status-tag-wip a {

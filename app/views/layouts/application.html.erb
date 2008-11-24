@@ -13,9 +13,15 @@
 	<%# >>> HEADER-WRAPPER %>
 	<div id="header-wrapper">
 		<div id="admin-menu">
-			Howdy, you are logged as 
-			<em><%= session[:user_login] %></em>! &nbsp;
-			<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; Help
+			<div style="float:right;">
+				&nbsp;
+				<%= image_tag('/images/001_61.png', :style => "margin-top:1px;") %>
+			</div>
+			<div style="float:right;">
+				Howdy, you are logged as 
+				<em><%= session[:user_login] %></em>! &nbsp;
+				<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; 
+			</div>
 		</div>
 		<br />
 		<h1><%=h session[:business_name] %> - <%=h @page_title || "Dashboard" %></h1>

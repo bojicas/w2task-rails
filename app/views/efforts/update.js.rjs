@@ -1,8 +1,8 @@
 page.replace_html :listefforts, :partial => "index"
-
+#page[:edit_effort_form].reset
+#page.replace_html :neweffort, :partial => "empty"
 page.replace_html 'flash-notice', flash[:notice]
 page.replace_html 'flash-error', flash[:error]
 page['flash-notice'].visual_effect :highlight
 page['flash-error'].visual_effect :highlight
 flash.discard
-

@@ -5,8 +5,10 @@ class EffortsController < ApplicationController
   # GET /efforts
   # GET /efforts.xml
   def index
-    @page_title = "Listing efforts"
 
+    @page_title = "Listing efforts"
+    session[:page] = 1 unless params[:page]
+    
     @efforts = get_efforts
     @effort = Effort.new
     
@@ -21,9 +23,12 @@ class EffortsController < ApplicationController
   # GET /efforts/1.xml
   def show
     @effort = Effort.find(params[:id])
+    
+    @efforts = get_efforts
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js
       format.xml  { render :xml => @effort }
     end
   end
@@ -44,11 +49,13 @@ class EffortsController < ApplicationController
   # GET /efforts/1/edit
   def edit
     @effort = Effort.find(params[:id])
+    @efforts = get_efforts
     respond_to do |format|
-      format.js if request.xhr?
       format.html # new.html.erb
+      format.js
       format.xml  { render :xml => @effort }
     end
+    session[:page] = params[:page]
   end
 
   # POST /efforts
@@ -62,13 +69,13 @@ class EffortsController < ApplicationController
         format.html { redirect_to(efforts_url) }
         @efforts = get_efforts
         format.js
-        format.xml  { render :xml => @effort, :status => :created, :location => @effort }
+        #format.xml  { render :xml => @effort, :status => :created, :location => @effort }
       else
         flash[:error] = 'Cannot create effort.'
         format.html { render :action => "new" }
         @efforts = get_efforts
         format.js
-        format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
+        #format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -81,11 +88,16 @@ class EffortsController < ApplicationController
     respond_to do |format|
       if @effort.update_attributes(params[:effort])
         flash[:notice] = 'Effort was successfully updated.'
-        format.html { redirect_to(efforts_url) }
-        format.xml  { head :ok }
+        @efforts = get_efforts
+        format.js
+        format.html { redirect_to(:action => index) }
+        #format.xml  { head :ok }
       else
+        flash[:notice] = 'Effort was not successfully updated.'
+        @efforts = get_efforts
+        format.js
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
+        #format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -106,7 +118,7 @@ class EffortsController < ApplicationController
   
   def get_efforts
     efforts = Effort.paginate(:all, 
-      :order => "start DESC, updated_at DESC, stop DESC, body", 
+      :order => "start DESC, created_at DESC, stop DESC, body", 
       :conditions => ["business_id = ?", @business.id],
       :page => params[:page],
       :per_page => 10 )

@@ -1,40 +1,70 @@
-<div id="workspace-header1" style="text-align:right;">
-	<%= will_paginate @Efforts, :renderer => 'RemoteLinkRenderer', :params => {:remote => {:update => 'effortsurl'}} %>
-</div>
-
-<ul id="effortsul">
-<% for effort in @efforts %>
-  <li>
-		<div id="avatar">
-			<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
-		</div>
-    <div id="text">
-			<%= link_to '"' + truncate(effort.body, 37) + '"', effort %>
-			<br />
-			Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
-		</div>
-		<div id="right">
-			<div id="duration">
-				<%= hh_mm(effort.start, effort.stop) %>
-			</div>
-			<% if effort.stop %>
-				<div id = "status-tag-done"><%= link_to 'done', edit_effort_path(effort) %></div>
-			<% else %>
-			<div id = "status-tag-wip"><%= link_to 'wip', edit_effort_path(effort) %></div>
-			<% end %>
-
-	    <div id="delete-icon">
-				<%= link_to image_tag('/images/001_02.png', :size => '16x16'), 
-					effort, 
-					:confirm => 'Are you sure?', 
-					:method => :delete %>
-			</div>
-		</div>
-  </li>
+<div id = "listefforts">
+	<div id="workspace-header1" style="text-align:right;">
+		<%= will_paginate @Efforts, :renderer => 'RemoteLinkRenderer', :params => {} %>
+	</div>
 	<div id="clear-both-top-dotted">&nbsp;</div>
-<% end %>
-</ul>
+	<ul id="effortsul" style="margin:0; padding:0;">
+	<% for effort in @efforts %>
+	  <li id="effortid<%= effort.id.to_s %>" style="margin:0;padding:0;background-color:#F0F0F0;">
+			<div style="margin:0;padding:0;background-color:#FFFFFF;overflow:auto;">
+				<div id="avatar">
+					<%= image_tag effort.user.avatar.url(:thumb), :size => "24x24" %>
+				</div>
+		    <div id="text">
+					<%= link_to_remote '"' + truncate(effort.body, 37) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s) }, { :href => url_for(effort) } %>
+					<br />
+					Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
+				</div>
+				<div id="right">
+					<div id="duration">
+						<%= hh_mm(effort.start, effort.stop) %>
+					</div>
+					<% if effort.stop %>
+						<div id = "status-tag-done">
+							<% if params[:page] %>
+								<%= link_to_remote 'done',
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+									{ :href => url_for(edit_effort_path(effort)) } 
+								%>
+							<% else %>
+								<%= link_to_remote 'done',
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+									{ :href => url_for(edit_effort_path(effort)) } 
+								%>
+							<% end %>
+							<%= image_tag('/images/001_45.png', :size => "16x16") %>
+						</div>
+					<% else %>
+						<div id = "status-tag-wip">
+							<% if params[:page] %>
+								<%= link_to_remote 'wip',
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+									{ :href => url_for(edit_effort_path(effort)) } 
+								%>
+							<% else %>
+								<%= link_to_remote 'wip',
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+									{ :href => url_for(edit_effort_path(effort)) } 
+								%>
+							<% end %>
+							<%= image_tag('/images/001_45.png', :size => "16x16") %>
+						</div>
+					<% end %>
 
-<div id="workspace-header1" style="text-align:right;">
-	<%= will_paginate @Efforts, :renderer => 'RemoteLinkRenderer', :params => {:remote => {:update => 'effortsurl'}} %>
+			    <div id="delete-icon">
+						<%= link_to image_tag('/images/001_02.png', :size => '16x16'), 
+							effort, 
+							:confirm => 'Are you sure?', 
+							:method => :delete %>
+					</div>
+				</div>
+	 		</div>
+			<div id="clear-both-top-dotted" style="background-color:#FFFFFF">&nbsp;</div>
+	 </li>
+	<% end %>
+	</ul>
+
+	<div id="workspace-header1" style="text-align:right;">
+		<%= will_paginate @Efforts, :renderer => 'RemoteLinkRenderer', :params => {} %>
+	</div>
 </div>

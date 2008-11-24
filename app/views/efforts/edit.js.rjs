@@ -1,0 +1,14 @@
+page.replace_html :listefforts, :partial => "index"
+
+# to do. i will need to escape this in case i am shifting to a new page
+if session[:page] == params[:page] or params[:page].nil? or (session[:page] == 1 and params[:page])
+  page.replace_html "effortid#{@effort.id}", :partial => "edit"
+end
+
+# page.replace_html :efforttitle, "<strong>Edit effort ID#{@effort.id}</strong> - #{truncate(@effort.body, 37)} - #{params[:page]}"
+
+page.replace_html 'flash-notice', flash[:notice]
+page.replace_html 'flash-error', flash[:error]
+page['flash-notice'].visual_effect :highlight
+page['flash-error'].visual_effect :highlight
+flash.discard

@@ -1,24 +1,6 @@
 <h1>Editing effort</h1>
 
-<% form_for(@effort) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :cols => 40, :rows => 4 %>
-  </p>
-  <p>
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start %>
-  </p>
-  <p>
-    <%= f.label :stop %><br />
-    <%= f.datetime_select :stop %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+<%= render :partial => "edit" %>
 
 <%= link_to 'Show', @effort %> |
 <%= link_to 'Back', efforts_path %>
