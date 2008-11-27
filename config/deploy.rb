@@ -17,7 +17,7 @@ set :deploy_to, "/home/w2task/web/#{application}"
 # your SCM below:
 set :scm, :git
 # keep a cached code checkout on the server, and do updates each time (more efficient)
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 set :branch, "master"
 
 role :app, domain
@@ -25,8 +25,23 @@ role :web, domain
 role :db,  domain, :primary => true
 
 namespace :deploy do
-  desc "Restart Application"
+  desc "Tell Passenger to restart the app."
   task :restart, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
   end
+  
+  desc "Symlink shared configs and folders on each release."
+  task :symlink_shared do
+    # run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/assets/avatars #{release_path}/public/avatars"
+    run "ln -nfs #{release_path}/public /home/w2task/web/public"
+  end
+  
+  desc "Symlink shared configs and folders on each release."
+  task :setup_assets do
+    run "mkdir -p #{shared_path}/assets/avatars/"
+  end  
+  
 end
+
+after 'deploy:update_code', 'deploy:symlink_shared'
