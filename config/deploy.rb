@@ -45,7 +45,7 @@ namespace :deploy do
   end  
 
   task :fix_script_perms do
-    run "chmod 755 #{release_path}script/spin"
+    run "chmod 755 #{release_path}/script/spin"
   end  
 end
 
