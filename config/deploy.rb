@@ -1,5 +1,5 @@
 set :application, "w2task"
-set :domain,  "staging.bojica.com"
+set :domain,  "72.2.118.101"
 set :server_name, "staging.bojica.com"
 set :server_alias, "*.staging.bojica.com"
 set :user,  "w2task"
@@ -11,7 +11,7 @@ set :use_sudo,    false
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
-set :deploy_to, "/home/w2task/web/apps/#{application}"
+set :deploy_to, "/home/w2task/web/#{application}"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
@@ -22,7 +22,7 @@ set :branch, "master"
 
 role :app, domain
 role :web, domain
-role :db,  "localhost", :primary => true
+role :db,  domain, :primary => true
 
 namespace :deploy do
   desc "Restart Application"
