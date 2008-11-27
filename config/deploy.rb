@@ -3,6 +3,7 @@ set :domain,  "72.2.118.101"
 set :server_name, "staging.bojica.com"
 set :server_alias, "*.staging.bojica.com"
 set :user,  "w2task"
+set :runner, nil
 set :repository,  "git@github.com:bojicas/w2task.git"
 set :local_repository,   "#{File.dirname(__FILE__)}/../"
 
