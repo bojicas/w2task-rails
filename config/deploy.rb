@@ -35,6 +35,7 @@ namespace :deploy do
   task :symlink_shared do
     # run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/assets/avatars #{release_path}/public/avatars"
+    run "rm -f /home/w2task/web/public"
     run "ln -nfs #{release_path}/public /home/w2task/web/public"
   end
   
