@@ -1,7 +1,7 @@
 page.replace_html :listefforts, :partial => "index"
 
 # to do. i will need to escape this in case i am shifting to a new page
-if session[:page] == params[:page] or params[:page].nil? or (session[:page] == 1 and params[:page])
+if session[:page] == params[:page] or params[:page].nil? or (session[:page] == 1 and !params[:page])
   page.replace_html "effortid#{@effort.id}", :partial => "edit"
 end
 

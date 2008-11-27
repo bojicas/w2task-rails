@@ -50,12 +50,12 @@ class EffortsController < ApplicationController
   def edit
     @effort = Effort.find(params[:id])
     @efforts = get_efforts
+    session[:page] = params[:page]
     respond_to do |format|
       format.html # new.html.erb
       format.js
       format.xml  { render :xml => @effort }
     end
-    session[:page] = params[:page]
   end
 
   # POST /efforts
