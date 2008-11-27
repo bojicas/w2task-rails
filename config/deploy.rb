@@ -42,7 +42,11 @@ namespace :deploy do
   task :setup_assets do
     run "mkdir -p #{shared_path}/assets/avatars/"
   end  
-  
+
+  task :fix_script_perms do
+    run "chmod 755 #{release_path}script/spin"
+  end  
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
+after 'deploy:symlink_shared', 'fix_script_perms'
