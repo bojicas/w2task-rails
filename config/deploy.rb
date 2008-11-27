@@ -49,4 +49,4 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
-after 'deploy:symlink_shared', 'fix_script_perms'
+after 'deploy:symlink_shared', 'deploy:fix_script_perms'
