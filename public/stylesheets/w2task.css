@@ -159,7 +159,7 @@ a, a:visited, a:hover {
 }
 /* <<< ICONS */
 /* TAGS >>> */
-#status-tag-done {
+#status-tag-bw {
 	float: left;
 	background-color: #66CC66; /* a green tone */
 	color: white; 
@@ -168,7 +168,21 @@ a, a:visited, a:hover {
 	width: 60px;
 	font-size: 12px;
 }
-#status-tag-done a {
+#status-tag-bw a {
+	color: white;
+	text-decoration: none;
+	font-size: 12px;
+} 
+#status-tag-nbw {
+	float: left;
+	background-color: #5A9ECF; /* a blue tone */
+	color: white; 
+	text-align: center; 
+	padding: 3px; 
+	width: 60px;
+	font-size: 12px;
+}
+#status-tag-nbw a {
 	color: white;
 	text-decoration: none;
 	font-size: 12px;

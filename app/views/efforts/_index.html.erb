@@ -20,20 +20,37 @@
 						<%= hh_mm(effort.start, effort.stop) %>
 					</div>
 					<% if effort.stop %>
-						<div id = "status-tag-done">
+						<% if effort.billable == true %>
+							<div id = "status-tag-bw">
+								<% if params[:page] %>
+									<%= link_to_remote 'bw',
+										{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+										{ :href => url_for(edit_effort_path(effort)) } 
+									%>
+								<% else %>
+									<%= link_to_remote 'bw',
+										{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+										{ :href => url_for(edit_effort_path(effort)) } 
+									%>
+								<% end %>
+								<%= image_tag('/images/001_45.png', :size => "16x16") %>
+							</div>
+						<% else %>
+						<div id = "status-tag-nbw">
 							<% if params[:page] %>
-								<%= link_to_remote 'done',
+								<%= link_to_remote 'nbw',
 									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 							<% else %>
-								<%= link_to_remote 'done',
+								<%= link_to_remote 'nbw',
 									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 							<% end %>
 							<%= image_tag('/images/001_45.png', :size => "16x16") %>
-						</div>
+						</div>						
+						<% end %>
 					<% else %>
 						<div id = "status-tag-wip">
 							<% if params[:page] %>
@@ -46,9 +63,9 @@
 									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
-							<% end %>
-							<%= image_tag('/images/001_45.png', :size => "16x16") %>
-						</div>
+						<% end %>
+						<%= image_tag('/images/001_45.png', :size => "16x16") %>
+					</div>
 					<% end %>
 
 			    <div id="delete-icon">

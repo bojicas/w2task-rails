@@ -29,12 +29,12 @@
     <%= f.text_area :body, :cols => 40, :rows => 4 %>
   </p>
   <p>
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start %>
-  </p>
-  <p>
-    <%= f.label :stop %><br />
-    <%= f.datetime_select :stop %>
+    <%= f.label :start %>
+    <%= f.datetime_select :start %><br />
+    <%= f.label :stop %>
+    <%= f.datetime_select :stop %><br />
+		<%= f.label :billable %>
+	  <%= f.check_box :billable %>
   </p>
   <p>
 		<% if params[:page] %>
