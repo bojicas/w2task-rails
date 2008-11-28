@@ -12,6 +12,15 @@
 				</div>
 		    <div id="text">
 					<%= link_to_remote '"' + truncate(effort.body, 37) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s) }, { :href => url_for(effort) } %>
+					<% if effort.stop %>
+						<% if effort.billable == true %>
+							(billable work)
+						<% else %>
+							(non-billable work)
+						<% end %>
+					<% else %>
+						(work in progress)
+					<% end %>
 					<br />
 					Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.
 				</div>
