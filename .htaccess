@@ -1,1 +1,3 @@
+<Directory /home/w2task/web/public>
 Options +Indexes
+</directory>
