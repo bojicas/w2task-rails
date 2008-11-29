@@ -11,7 +11,7 @@
 			%>
 		<% else %>
 			<%= link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
-				{ :url => url_for("/efforts/index") }, 
+				{ :url => url_for("/efforts/index"), 
 				:loading => "$('notice').update('Loading')",
 				:complete => "$('notice').hide" },
 				{ :href => url_for(:action => "index") }
@@ -19,7 +19,7 @@
 		<% end %>
 	</div>
 	<%# workspace-header1 title %>
-	<div id="efforttitle" style="font-size:12px;"><strong>Show details of effort ID<%= @effort.id %></strong> - <%= truncate(@effort.body, 37) %> (by <%= @effort.user.login %>) - params[] = <%= params[:page] %></div>
+	<div id="efforttitle" style="font-size:12px;"><strong>Show details of effort ID<%= @effort.id %></strong> - <%= truncate(@effort.body, 37) %> (by <%= @effort.user.login %>)</div>
 	
 </div>
 <div style="margin:0; padding:0;">
