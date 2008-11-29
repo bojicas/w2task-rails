@@ -5,13 +5,15 @@
 		<% if params[:page] %>
 			<%= link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
 				{ :url => url_for("/efforts/index?page=#{params[:page]}"),
-				:loading => "$('notice').update('I told you not to click')",
-				:complete => "$('notice').update('Ok now! Look what you did, stupid!')" },
+				:loading => "$('notice').update('Loading')",
+				:complete => "$('notice').hide" },
 				{ :href => url_for(:action => "index") }
 			%>
 		<% else %>
 			<%= link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
 				{ :url => url_for("/efforts/index") }, 
+				:loading => "$('notice').update('Loading')",
+				:complete => "$('notice').hide" },
 				{ :href => url_for(:action => "index") }
 			%>
 		<% end %>
@@ -20,7 +22,7 @@
 	<div id="efforttitle" style="font-size:12px;"><strong>Edit effort ID<%= @effort.id %></strong> - <%= truncate(@effort.body, 37) %> (by <%= @effort.user.login %>)</div>
 	
 </div>
-<div style="margin:0; padding:0;">
+<div style="margin:0; padding:0; ">
 <% form_remote_for(@effort , :html => { :id => 'edit_effort_form' }) do |f| %>
   <%= f.error_messages %>
 

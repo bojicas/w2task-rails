@@ -23,8 +23,8 @@ class EffortsController < ApplicationController
   # GET /efforts/1.xml
   def show
     @effort = Effort.find(params[:id])
-    
     @efforts = get_efforts
+    session[:page] = params[:page]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,6 +51,7 @@ class EffortsController < ApplicationController
     @effort = Effort.find(params[:id])
     @efforts = get_efforts
     session[:page] = params[:page]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.js

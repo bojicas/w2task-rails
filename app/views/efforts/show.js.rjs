@@ -1,3 +1,6 @@
 page.replace_html :listefforts, :partial => "index"
-page.replace_html :neweffort, :partial => "show"
+#page.replace_html :neweffort, :partial => "show"
+if session[:page] == params[:page] or params[:page].nil? or (session[:page] == 1 and !params[:page])
+  page.replace_html "effortid#{@effort.id}", :partial => "show"
+end
 page.replace_html :efforttitle, "<strong>Show details for effort ID#{@effort.id}</strong>"
