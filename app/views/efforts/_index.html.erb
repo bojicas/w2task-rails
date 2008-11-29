@@ -12,9 +12,9 @@
 				</div>
 		    <div id="text">
 					<% if params[:page] %>
-						<%= link_to_remote '"' + truncate(effort.body, 37) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s + "?page=" + params[:page].to_s) }, { :href => url_for(effort) } %>
+						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s + "?page=" + params[:page].to_s) }, { :href => url_for(effort) } %>
 					<% else %>
-						<%= link_to_remote '"' + truncate(effort.body, 37) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s) }, { :href => url_for(effort) } %>
+						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s) }, { :href => url_for(effort) } %>
 					<% end %>
 					<% if effort.stop %>
 						<% if effort.billable == true %>

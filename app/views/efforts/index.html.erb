@@ -1,10 +1,15 @@
 <div id="workspace-header1" style="background-color: #303030;">
+	<div id="notice" style="float:right;visibility:hidden;">...</div>
 	<div id="blue-icons">
 		<%# New Effort %>
-		<%= link_to_remote image_tag('/images/001_01.png', :size => "16x16"),
-			{ :url => { :action => "new" } }, 
-			{ :href => url_for(:action => :new) }
-		%>
+		<span id = "newbutton">
+
+			<%= link_to_remote image_tag('/images/001_01.png', :size => "16x16"),
+				{ :url => { :action => "new" } }, 
+				{ :href => url_for(:action => :new) }
+			%>
+
+		</span>
 
 		<%# Find Effort %>
 		&nbsp; <%= link_to_remote image_tag('/images/001_38.png', :size => "16x16"), :url => { :action => :new }, :update => 'neweffort' %>

@@ -38,6 +38,11 @@ class EffortsController < ApplicationController
   def new    
     @effort = Effort.new
     @efforts = get_efforts
+    if !session[:show_new].nil? or session[:show_new] == true
+      session[:show_new] = false
+    else
+      session[:show_new] = true
+    end
     
     respond_to do |format|
       format.html # new.html.erb
