@@ -7,7 +7,7 @@ if params[:hide_new_form] == '1'
 	page.replace_html :efforttitle, "<strong>Efforts</strong>"
 else
   page.replace_html :newbutton, "#{link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
-		{ :url => url_for('efforts/new?hide_new_efforts=1') }, 
+		{ :url => url_for('efforts/new?hide_new_form=1') }, 
 		{ :href => url_for(:action => :new) }}"
 	page.replace_html :efforttitle, "<strong>Add new efforts</strong>"
 end
