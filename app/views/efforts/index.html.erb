@@ -31,3 +31,16 @@
 	</div>
 </div>
 
+<% content_for(:sidebar) do -%>
+	<div style="color:black;"><u><strong>EFFORTS SIDEBAR</strong></u></div>
+	<br />
+	<div style="color:black;"><u>BUSINESS FACTS</u></div>
+	<div>
+		Current business: <%= truncate session[:business_name], :length => 25 %><br />
+		<div style="float:left;"><%= image_tag('/images/001_12.png', :size => "16x16") %> </div>
+		<div style="float:left;">&nbsp; You have <%= link_to "no unread messages", :controller => "messages" %>.</div>
+	</div>
+	<br /><br />
+	
+	<div style="color:black;"><u>STATISTICS</u></div>
+<% end -%>

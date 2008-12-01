@@ -27,13 +27,14 @@
 		<h1><%=h truncate session[:business_name], :length => 35 %> - <%=h @page_title || "Dashboard" %></h1>
 		<div id="clear-both">&nbsp;</div>
 		<div id="main-menu-left-wrapper">
-			<%= link_to 'Efforts', efforts_url, :id => "main-menu" %>
+			<%= link_to '&radic; &nbsp;Efforts', efforts_url, :id => "main-menu" %>
 		</div>
 		<div id="main-menu-right-wrapper">
 			<%# lic might work better, but in this moment I can't get :id => "main menu" working %>
-			<%= link_to 'Administration Panel', '/administration', :id => 'main-menu', :style => "background-color: #303030; z-index:0;" %>
+			<%= link_to 'Message Center', '/messages', :id => 'main-menu' %>
+			<%= link_to 'Administration Panel', '/administration', :id => 'main-menu', :style => "background-color: #303030; z-index:-10000;" %>
 		</div>
-		<div style = "background-color: #1A4F85; clear:both; height:5px; padding-top:3px; z-index:100;"><br /></div>
+		<div style = "background-color:#1A4F85; clear:both; height:5px; padding-top:2px; z-index:100;"></div>
 	</div>
 	<%# <<< HEADER-WRAPPER %>
 
