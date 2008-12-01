@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081128065236) do
+ActiveRecord::Schema.define(:version => 20081201080855) do
 
   create_table "businesses", :force => true do |t|
     t.string   "nick"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(:version => 20081128065236) do
     t.integer  "user_id"
     t.integer  "business_id"
     t.boolean  "billable",    :default => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "message_type"
+    t.boolean  "readed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
