@@ -1,33 +1,12 @@
-<h1>Listing businesses</h1>
-
-<table>
-  <tr>
-    <th>Nick</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Country</th>
-  </tr>
-
-<% for business in @businesses %>
-  <tr>
-    <td><%=h business.nick %></td>
-    <td><%=h business.name %></td>
-    <td><%=h business.description %></td>
-    <td><%=h business.country_id %></td>
-    <td><%= link_to 'Show', business %></td>
-    <td><%= link_to 'Edit', edit_business_path(business) %></td>
-    <td><%= link_to 'Destroy', business, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<div style="color:black;"><u><strong>ADMINISTRATION PANEL</strong></u></div>
 <br />
-
-<%= link_to 'New business', new_business_path %>
-
-
-<% content_for(:sidebar) do -%>
-	<u>ADMINISTRATION PANEL</u>
-	<br /><br />
-	BUSINESS: <%= link_to business.name, edit_business_path(business) -%>
-<% end -%>
+<div style="color:black;"><u>BUSINESSES:</u></div>
+<div style="border-bottom: thin dotted white; width:100%">
+	You are part of <%= pluralize @businesses.size, 'business' -%>.<br />
+	Current business: <%= truncate session[:business_name], :length => 25 %>
+</div>
+<br />
+<div style="color:black;"><u>USERS:</u></div>
+<div style="border-bottom: thin dotted white; width:100%">
+	<%= truncate session[:business_name], :length => 25 %> has <%= pluralize @users.size, 'user' %>
+</div>

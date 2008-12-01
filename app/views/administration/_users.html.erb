@@ -1,0 +1,44 @@
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_business_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Users with access to <%= session[:business_name] %> (<%= current_subdomain %>)</strong>
+</div>
+<div id="workspace-body">
+	<ul>
+		<% for user in @users %>
+			<li>
+				<div style="width:100%;">
+					<div style="float:left;">
+						<div id="avatar">
+							<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
+						</div>
+						<div style="align:left;min-width:350px;">
+							<%=h user.login %> /
+					    <%=h user.email %>
+							<br />
+							<% for user_association in user.user_associations %>
+								<% if user_association.business_id == session[:business_id] %>
+									<% if user_association.administrator == true %>
+										Administrator
+									<% else %>
+										Normal User
+									<% end %>
+								<% end %>
+							<% end %>
+							<%=h "(This is you)" if user.id == session[:user_id] %>
+						</div>
+					</div>
+				
+					<div style="float:right;">
+				    <%= link_to 'Edit', edit_user_path(user) %> |
+				    <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+					</div>
+				</div>
+				<br />
+		</li>
+		<% end %>
+	</ul>
+</div>

@@ -6,7 +6,7 @@ class EffortsController < ApplicationController
   # GET /efforts.xml
   def index
 
-    @page_title = "Listing efforts"
+    @page_title = "Efforts"
     session[:page] = 1 unless params[:page]
     
     @efforts = get_efforts

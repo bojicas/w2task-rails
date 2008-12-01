@@ -1,23 +1,6 @@
-<div id="workspace-header1">
-	<div id="blue-icons">
-		<%# New Business %>
-		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_business_path %>
-	</div>
-	<%# workspace-header1 title %>
-	<strong>Current Businesses</strong>
-</div>
-<div id="workspace-body">
-	<ul>
-		<% for business in @businesses %>
-			<li>
-				<%= link_to business.nick, business %> /
-		    <%=h business.name %> - <%= business.country.name %>
-		    <%= link_to 'Select', efforts_path(:subdomain => business.nick) %> |
-		    <%= link_to 'Edit', edit_business_path(business) %> |
-		    <%= link_to 'Destroy', business, :confirm => 'Are you sure?', :method => :delete %>
-				<br />
-				<%= business.description %>
-		</li>
-		<% end %>
-	</ul>
-</div>
+<%= render :partial => "businesses" %>
+<%= render :partial => "users" %>
+
+<% content_for(:sidebar) do -%>
+	<%= render :partial => "sidebar" %>
+<% end -%>

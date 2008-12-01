@@ -32,9 +32,11 @@ class ApplicationController < ActionController::Base
     if @business.nil?
       flash[:error] = "You are not autorized to access<br />this business data or<br />business does not exist!"
       session[:business_name] = "No business!"
+      session[:business_id] = nil
       redirect_to :controller => :administration, :action => :index
     else
       session[:business_name] = @business.name 
+      session[:business_id] = @business.id
     end
   end
 end
