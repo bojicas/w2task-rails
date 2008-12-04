@@ -18,8 +18,8 @@
 				<%= image_tag('/images/001_61.png', :style => "margin-top:1px;") %>
 			</div>
 			<div style="float:right;">
-				Howdy, you are logged as 
-				<em><%= session[:user_login] %></em>! &nbsp;
+				Howdy, you are logged in as 
+				<em><%= link_to session[:user_login], :controller => 'users', :action => 'edit', :id => session[:user_id] %></em>! &nbsp;
 				<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; 
 			</div>
 		</div>
@@ -28,6 +28,10 @@
 		<div id="clear-both">&nbsp;</div>
 		<div id="main-menu-left-wrapper">
 			<%= link_to '&radic; &nbsp;Efforts', efforts_url, :id => "main-menu" %>
+			<%= link_to 'Projects', efforts_url, :id => "main-menu" %>
+			<%= link_to 'Milestones', efforts_url, :id => "main-menu" %>
+			<%= link_to 'Clients', efforts_url, :id => "main-menu" %>
+			<%= link_to 'Reports', efforts_url, :id => "main-menu" %>
 		</div>
 		<div id="main-menu-right-wrapper">
 			<%# lic might work better, but in this moment I can't get :id => "main menu" working %>

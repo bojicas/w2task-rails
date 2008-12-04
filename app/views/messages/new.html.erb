@@ -1,31 +1,47 @@
-<h1>New message</h1>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to 'Back', messages_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>New message</strong>
+</div>
 
 <% form_for(@message) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :recipient_id %><br />
-    <%= f.text_field :recipient_id %>
-  </p>
-  <p>
-    <%= f.label :sender_id %><br />
-    <%= f.text_field :sender_id %>
-  </p>
-  <p>
+  <div style="float:left;">
+    <%= f.label :message_type %>
+    <%= f.select :message_type, { :normal => 0, :invitation => 1 } %>
+  </div>
+	<div style="float:left;">
+		&nbsp; &nbsp; &nbsp;
+	</div>
+  <div style="float:left;">
+    <%= f.label "Mark as read?" %>
+    <%= f.check_box :readed %>
+  </div>
+	<div style="width:100%;"></div>
+	<br /><br /><br />
+	<div>
+	  <div style="float:left;">
+	    <%= f.label :recipient_id %><br />
+	    <%= f.text_field :recipient_id, :size => 39 %>
+	  </div>
+	  <div style="float:left;">
+	    <%= f.label :sender_id %><br />
+	    <%= f.text_field :sender_id, :size => 39 %>
+	  </div>
+	</div>
+	<div style="width:100%;"></div>
+  <br /><br /><br />
+	<div style="width:100%;">
     <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </p>
+    <%= f.text_field :subject, :size => 80 %>
+  </div>
   <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.label :message_type %><br />
-    <%= f.text_field :message_type %>
-  </p>
-  <p>
-    <%= f.label :readed %><br />
-    <%= f.check_box :readed %>
+    <%= f.text_area :body, :rows => 6, :cols => 80 %>
   </p>
   <p>
     <%= f.submit "Create" %>

@@ -9,8 +9,13 @@ class EffortsController < ApplicationController
     @page_title = "Efforts"
     session[:page] = 1 unless params[:page]
     
+    @no_of_messages = Message.find(:all, :conditions => { :recipient_id => session[:user_id] }).size
     @efforts = get_efforts
     @effort = Effort.new
+    @efforts_size = Effort.find(:all, 
+      :order => "start DESC, created_at DESC, stop DESC, body", 
+      :conditions => ["business_id = ?", @business.id]
+    ).size
     
     respond_to do |format|
       format.html # index.html.erb

@@ -14,6 +14,8 @@ class MessagesController < ApplicationController
   # GET /messages/1.xml
   def show
     @message = Message.find(params[:id])
+    @recipient = User.find(@message.recipient_id).login
+    @sender = User.find(@message.sender_id).login
 
     respond_to do |format|
       format.html # show.html.erb

@@ -35,12 +35,16 @@
 	<div style="color:black;"><u><strong>EFFORTS SIDEBAR</strong></u></div>
 	<br />
 	<div style="color:black;"><u>BUSINESS FACTS</u></div>
-	<div>
+	<div style="border-bottom: thin dotted white; width:100%">
 		Current business: <%= truncate session[:business_name], :length => 25 %><br />
 		<div style="float:left;"><%= image_tag('/images/001_12.png', :size => "16x16") %> </div>
-		<div style="float:left;">&nbsp; You have <%= link_to "no unread messages", :controller => "messages" %>.</div>
+		<div style="float:left;">&nbsp; You have <%= link_to pluralize(@no_of_messages, 'message'), :controller => "messages" %> in your inbox.</div>
+		<br />
 	</div>
-	<br /><br />
+	<br />
 	
 	<div style="color:black;"><u>STATISTICS</u></div>
+	<div style="border-bottom: thin dotted white; width:100%">
+		A total of <%= pluralize @efforts_size, 'effort' %> are recorded.
+	</div>
 <% end -%>
