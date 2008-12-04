@@ -26,5 +26,5 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 # Keeping session data accross subdomains
-ActionController::Base.session_options[:session_domain] = '.staging.bojica.com'
+ActionController::Base.session_options[:session_domain] = '.w2task.com'
 
