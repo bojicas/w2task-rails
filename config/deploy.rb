@@ -9,6 +9,9 @@ set :local_repository,   "#{File.dirname(__FILE__)}/../"
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
 set :deploy_to, "/var/www/apps/#{application}" # I like this location
+
+# This is necessary to start and stop all your mongrels with the alternate-SMF approach
+set :service_list, "`svcs -H -o FMRI svc:application/mongrel/#{application}-production`"
  
 set :user, 'w2task'
 set :runner, 'w2task'

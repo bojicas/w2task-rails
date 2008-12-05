@@ -1,34 +1,41 @@
-<?xml version='1.0'?>
-<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+<?xml version='1.0'?> <!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+
 <service_bundle type='manifest' name='mongrel/<%= service_name %>-production'>
-  <service name='network/mongrel/<%= service_name %>-production' type='service' version='0'>
-    <create_default_instance enabled='true'/>
-    <single_instance/>    
-    <dependency name='fs' grouping='require_all' restart_on='none' type='service'>
-      <service_fmri value='svc:/system/filesystem/local'/>
-    </dependency>
-    <dependency name='net' grouping='require_all' restart_on='none' type='service'>
-      <service_fmri value='svc:/network/loopback'/>
-      <!-- uncomment the following line if you are on an L+ Accelerator since /home is mounted through nfs -->
-      <!--<service_fmri value='svc:/network/nfs/client'/>-->
-    </dependency>
-    <dependent name='mongrel_multi-user' restart_on='none' grouping='optional_all'>
+
+<!-- 'application/' is a more appropriate name prefix than 'network/' -->
+<service name='application/mongrel/<%= service_name %>-production' type='service' version='0'>
+  <!-- Dependancies for all mongrels. Might wanna add mysql here too, since our app requires it -->
+  <dependency name='fs' grouping='require_all' restart_on='none' type='service'>
+    <service_fmri value='svc:/system/filesystem/local'/>
+  </dependency>
+  <dependency name='net' grouping='require_all' restart_on='none' type='service'>
+    <service_fmri value='svc:/network/loopback'/>
+    <!-- uncomment the following line if you are on an L+ Accelerator since /home is mounted through nfs -->
+    <!--<service_fmri value='svc:/network/nfs/client'/>-->
+  </dependency>
+  
+  <% start_port.upto(end_port) do |port| %>
+  <!-- instance names can't start with digits. Bummer. -->
+  <instance name='p_<%= port.to_s %>' enabled='false'>
+    <!-- Cause the multi-user milestone to bring these services up -->
+    <dependent name='<%= service_name %>_<%= port.to_s %>_multi-user' restart_on='none' grouping='optional_all'>
       <service_fmri value='svc:/milestone/multi-user'/>
     </dependent>
-    <!--<exec_method name='start' type='method' exec='/opt/csw/bin/mongrel_rails cluster::start' timeout_seconds='60'>-->
-    <!-- If you're on a new pkgsrc templated accelerator replace the line above with the following line: -->
-    <exec_method name='start' type='method' exec='/opt/local/bin/mongrel_rails cluster::start' timeout_seconds='60'>
+  
+    <exec_method name='start' type='method' 
+          exec='mongrel_rails cluster::start --clean --only <%= port.to_s %>'
+          timeout_seconds='10'>
       <method_context working_directory='<%= working_directory %>'>
-        <method_credential user='w2task' group='w2task' />
+        <method_credential user='applicationuser' group='applicationdomain' />
         <method_environment>
-          <!--<envvar name='PATH' value='/usr/bin:/bin:/opt/csw/bin' />-->
+          <!-- <envvar name='PATH' value='/usr/bin:/bin:/opt/csw/bin' />-->
           <!-- If you're on a new pkgsrc templated accelerator replace the line above with the following line: -->
           <envvar name='PATH' value='/usr/bin:/bin:/opt/local/bin' />
         </method_environment>
       </method_context>
     </exec_method>
-    <exec_method name='stop' type='method' exec=':kill' timeout_seconds='60'>
-      <method_context/>
-    </exec_method>
-  </service>
+    <exec_method name='stop' type='method' exec=':kill' timeout_seconds='10' />
+  </instance>
+  <% end %>
+</service>
 </service_bundle>

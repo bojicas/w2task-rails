@@ -49,12 +49,12 @@ Capistrano::Configuration.instance(:must_exist).load do
  
     desc "Stops the application"
     task :smf_stop, :roles => :app do
-      sudo "svcadm disable /network/mongrel/#{application}-production"
+      sudo "svcadm disable #{service_list}"
     end
  
     desc "Starts the application"
     task :smf_start, :roles => :app do
-      sudo "svcadm enable -r /network/mongrel/#{application}-production"
+      sudo "svcadm enable #{service_list}"
     end
  
     desc "Restarts the application"
