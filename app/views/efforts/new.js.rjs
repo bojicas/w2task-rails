@@ -2,12 +2,16 @@ page.replace_html :listefforts, :partial => "index"
 page.replace_html :neweffort, :partial => "new"
 if params[:hide_new_form] == '1'
   page.replace_html :newbutton, "#{link_to_remote image_tag('/images/001_01.png', :size => "16x16"),
-		{ :url => { :action => "new" } }, 
+		{ :url => { :action => "new" },
+		:loading => "$('indicator').show()",
+		:complete => "$('indicator').hide()" },
 		{ :href => url_for(:action => :new) }}"
 	page.replace_html :efforttitle, "<strong>Efforts</strong>"
 else
   page.replace_html :newbutton, "#{link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
-		{ :url => url_for('efforts/new?hide_new_form=1') }, 
+		{ :url => url_for('efforts/new?hide_new_form=1'),
+		:loading => "$('indicator').show()",
+		:complete => "$('indicator').hide()" }, 
 		{ :href => url_for(:action => :new) }}"
 	page.replace_html :efforttitle, "<strong>Add new efforts</strong>"
 end

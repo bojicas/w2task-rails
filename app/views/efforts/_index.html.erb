@@ -12,9 +12,17 @@
 				</div>
 		    <div id="text">
 					<% if params[:page] %>
-						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s + "?page=" + params[:page].to_s) }, { :href => url_for(effort) } %>
+						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', 
+						{ :url => url_for('/efforts/show/' + effort.id.to_s + "?page=" + params[:page].to_s),
+						:loading => "$('indicator').show()",
+						:complete => "$('indicator').hide()" }, 
+						{ :href => url_for(effort) } %>
 					<% else %>
-						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', { :url => url_for('/efforts/show/' + effort.id.to_s) }, { :href => url_for(effort) } %>
+						<%= link_to_remote '"' + truncate(effort.body, { :length => 37 }) + '"', 
+						{ :url => url_for('/efforts/show/' + effort.id.to_s),
+						:loading => "$('indicator').show()",
+						:complete => "$('indicator').hide()" }, 
+						{ :href => url_for(effort) } %>
 					<% end %>
 					<% if effort.stop %>
 						<% if effort.billable == true %>
@@ -37,12 +45,16 @@
 							<div id = "status-tag-bw">
 								<% if params[:page] %>
 									<%= link_to_remote 'bw',
-										{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+										{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s),
+										:loading => "$('indicator').show()",
+										:complete => "$('indicator').hide()" },
 										{ :href => url_for(edit_effort_path(effort)) } 
 									%>
 								<% else %>
 									<%= link_to_remote 'bw',
-										{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+										{ :url => url_for('/efforts/edit/' + effort.id.to_s),
+										:loading => "$('indicator').show()",
+										:complete => "$('indicator').hide()" },
 										{ :href => url_for(edit_effort_path(effort)) } 
 									%>
 								<% end %>
@@ -52,12 +64,16 @@
 						<div id = "status-tag-nbw">
 							<% if params[:page] %>
 								<%= link_to_remote 'nbw',
-									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s),
+									:loading => "$('indicator').show()",
+									:complete => "$('indicator').hide()" },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 							<% else %>
 								<%= link_to_remote 'nbw',
-									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s),
+									:loading => "$('indicator').show()",
+									:complete => "$('indicator').hide()" },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 							<% end %>
@@ -68,12 +84,16 @@
 						<div id = "status-tag-wip">
 							<% if params[:page] %>
 								<%= link_to_remote 'wip',
-									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s) },
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s + "?page=" + params[:page].to_s),
+									:loading => "$('indicator').show()",
+									:complete => "$('indicator').hide()" },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 							<% else %>
 								<%= link_to_remote 'wip',
-									{ :url => url_for('/efforts/edit/' + effort.id.to_s) },
+									{ :url => url_for('/efforts/edit/' + effort.id.to_s),
+									:loading => "$('indicator').show()",
+									:complete => "$('indicator').hide()" },
 									{ :href => url_for(edit_effort_path(effort)) } 
 								%>
 						<% end %>

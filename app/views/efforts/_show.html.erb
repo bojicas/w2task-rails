@@ -4,16 +4,16 @@
 		<%# New Effort %>
 		<% if params[:page] %>
 			<%= link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
-				{ :url => url_for("/efforts/index?page=#{params[:page]}") },
-				# :loading => "$('notice').update('Loading')",
-				# :complete => "$('notice').hide" },
+				{ :url => url_for("/efforts/index?page=#{params[:page]}"),
+				:loading => "$('indicator').show()",
+				:complete => "$('indicator').hide()" },
 				{ :href => url_for(:action => "index") }
 			%>
 		<% else %>
 			<%= link_to_remote image_tag('/images/001_05.png', :size => "16x16"),
-				{ :url => url_for("/efforts/index") }, 
-				# :loading => "$('notice').update('Loading')",
-				# :complete => "$('notice').hide" },
+				{ :url => url_for("/efforts/index"),
+				:loading => "$('indicator').show()",
+				:complete => "$('indicator').hide()" },
 				{ :href => url_for(:action => "index") }
 			%>
 		<% end %>
