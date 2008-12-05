@@ -5,7 +5,8 @@
 		<span id = "newbutton">
 
 			<%= link_to_remote image_tag('/images/001_01.png', :size => "16x16"),
-				{ :url => { :action => "new" } }, 
+				{ :url => { :action => "new" }, :loading => "$('indicator').show()", 
+				:complete => "$('indicator').hide()" }, 
 				{ :href => url_for(:action => :new) }
 			%>
 
@@ -47,4 +48,13 @@
 	<div style="border-bottom: thin dotted white; width:100%">
 		A total of <%= pluralize @efforts_size, 'effort' %> are recorded.
 	</div>
+
+	<div id="indicator" style="visibility:hidden;">
+		<br />
+		<div style="float:left;">Loading...</div>
+		<div style="float:right;"><%= image_tag('/images/002_01.gif') %></div>
+		<br />
+	</div>
+	
+	
 <% end -%>
