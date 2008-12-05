@@ -32,8 +32,8 @@ role :app, domain
 role :web, domain
 role :db,  domain, :primary => true
  
-set :server_name, "staging.bojica.com"
-set :server_alias, "*.staging.bojica.com"
+set :server_name, "w2task.com"
+set :server_alias, "*.w2task.com"
  
 # Example dependancies
 depend :remote, :command, :gem
