@@ -12,6 +12,13 @@
 		<div style="float:right; text-align:right;padding:15px;">
 	  	<%= f.label :start %>
 		  <%= f.datetime_select :start %><br />
+
+			<%= f.label :project %>
+			<% if session[:project_id] && session[:project_name] %>
+	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id]), :selected => session[:project_id]) %>
+			<% else %>
+	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id])) %>
+			<% end %>
 			<%= f.label :billable %>
 		  <%= f.check_box :billable %>
 		  <br />

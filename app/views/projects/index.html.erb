@@ -1,0 +1,40 @@
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="notice" style="float:right;visibility:hidden;">...</div>
+	<div id="blue-icons">
+		<%# New Effort %>
+		<span id = "newbutton">
+
+			<%= link_to image_tag('/images/001_01.png', :size => "16x16"),
+				url_for(:action => :new)
+			%>
+
+		</span>
+	</div>
+	<%# workspace-header1 title %>
+	<div id="efforttitle"><strong>Projects</strong></div>
+</div>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Business</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% for project in @projects %>
+  <tr>
+    <td><%=h project.user_id %></td>
+    <td><%=h project.business_id %></td>
+    <td><%=h project.name %></td>
+    <td><%=h project.description %></td>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New project', new_project_path %>
