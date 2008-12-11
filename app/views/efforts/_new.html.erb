@@ -15,9 +15,9 @@
 
 			<%= f.label :project %>
 			<% if session[:project_id] && session[:project_name] %>
-	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id]), :selected => session[:project_id]) %>
+	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id]), :selected => session[:project_id], :include_blank => true) %>
 			<% else %>
-	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id])) %>
+	    	<%= f.select(:project_id, @effort.find_all_projects(session[:user_id], session[:business_id]), :include_blank => true) %>
 			<% end %>
 			<%= f.label :billable %>
 		  <%= f.check_box :billable %>

@@ -8,6 +8,6 @@ class Effort < ActiveRecord::Base
   validates_numericality_of :business_id, :user_id
   
   def find_all_projects(user_id, business_id)
-    Project.find(:all, :conditions => { :user_id => user_id, :business_id => business_id }).map {|u| ["#{u.name}", u.id]}
+    Project.find(:all, :conditions => { :user_id => user_id, :business_id => business_id }).collect {|u| ["#{u.name}", u.id]}
   end
 end

@@ -26,12 +26,15 @@
 					<% end %>
 					<% if effort.stop %>
 						<% if effort.billable == true %>
-							(billable work)
+							- billable work
 						<% else %>
-							(non-billable work)
+							- non-billable work
 						<% end %>
 					<% else %>
-						(work in progress)
+						- work in progress
+					<% end %>
+					<% if effort.project_id %>
+						on <%= effort.project.name %>
 					<% end %>
 					<br />
 					Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.

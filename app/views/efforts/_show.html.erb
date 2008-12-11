@@ -38,4 +38,12 @@
   <b>Stop:</b>
   <%=h @effort.stop %>
 </p>
+
+<% if @effort.project_id %>
+<p>
+  <b>Project:</b>
+  <%=h @effort.project.name %>
+</p>
+<% end %><br />
+
 </div>
