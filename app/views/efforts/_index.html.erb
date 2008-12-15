@@ -34,7 +34,7 @@
 						- work in progress
 					<% end %>
 					<% if effort.project_id %>
-						on <%= effort.project.name %>
+						on <%= link_to "#{effort.project.name}", effort.project %>
 					<% end %>
 					<br />
 					Started <%=h  time_ago_in_words(effort.start) %> ago by <%=h effort.user.login %>.

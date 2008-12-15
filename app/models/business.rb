@@ -4,6 +4,7 @@ class Business < ActiveRecord::Base
   has_many :users, :through => :user_associations
   has_many :user_associations, :dependent => :destroy
   has_many :efforts
+  has_many :projects
   
   validates_presence_of :nick, :name, :country_id
   validates_numericality_of :country_id

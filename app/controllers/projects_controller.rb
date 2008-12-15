@@ -2,7 +2,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.find(:all)
+    # limit the scope to the current business
+    @projects = Project.find(:all, :conditions => { :business_id => session[:business_id] })
 
     respond_to do |format|
       format.html # index.html.erb

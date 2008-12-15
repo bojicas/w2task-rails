@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :efforts
   has_many :businesses, :through => :user_associations
   has_many :user_associations
-
+  has_many :projects
 
   has_attached_file :avatar,
     :styles => { :medium => "100x100>", :thumb => "40x40>" }
