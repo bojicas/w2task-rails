@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   session :session_key => '_w2task_session_id' 
   
   before_filter :login_required
+  before_filter :set_user_time_zone
   
   helper :all # include all helpers, all the time
 
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   private
+  
+  def set_user_time_zone
+    Time.zone = current_user.time_zone if logged_in?
+  end
   
   def load_business_and_assign_to_user
     @business = Business.find_by_nick(current_subdomain,
