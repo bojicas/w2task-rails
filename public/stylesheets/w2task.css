@@ -220,7 +220,7 @@ a, a:visited, a:hover {
 	background-color: #FFFF99;
 	margin: 0;
 	padding: 0;
-	min-width: 235px;
+	width: 245px;
 }
 #flash-notice {
 	color: green;

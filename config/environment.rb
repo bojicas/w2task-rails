@@ -4,6 +4,10 @@
 # you don't control web/app server and can't set it the proper way
 ENV['RAILS_ENV'] ||= 'production'
 
+# recaptcha environment variables are set up bellow
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LcvVwQAAAAAAHVZXu8OULvc1jUCJw0Y5gH9XqhL'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcvVwQAAAAAAHB4_0B-VuUPoc2kYI_UnLAvXCaX'
+
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
