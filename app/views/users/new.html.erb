@@ -1,4 +1,12 @@
-<h1>Sign up as a new user</h1>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%#= link_to 'Back', messages_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Sign up as a new user</strong>
+</div>
+
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>

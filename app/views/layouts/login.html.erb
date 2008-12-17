@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold', 'w2task' %>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %></title>
+	<%= stylesheet_link_tag 'scaffold', 'w2task' %>
 </head>
 <body>
 
@@ -38,10 +38,6 @@
 
 	</div>
 
-	<div id="clear-both"></div>
-	<div style="text-align:left; margin-left:15px;">
-		&copy; 2008 w2task.com. All rights reserved<br />
-		Programming by Silviu D. Bojica<br /><br />
-	</div>
+<%= render :partial => "/layouts/copyright" %>
 </body>
 </html>
