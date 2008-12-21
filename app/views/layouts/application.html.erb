@@ -20,7 +20,7 @@
 			<div style="float:right;">
 				Howdy, you are logged in as 
 				<em><%= link_to session[:user_login], :controller => 'users', :action => 'edit', :id => session[:user_id] %></em>! &nbsp;
-				<%= link_to 'Logout', 'logout', :id => "logout-menu" %> &nbsp; 
+				<%= link_to 'Logout', :controller => 'logout' %> &nbsp; 
 			</div>
 		</div>
 		<br />

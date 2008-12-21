@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   # include AuthenticatedSystem
   before_filter :login_required, :except => ['new', 'create']
   
-  layout "login", :only => ['new', 'create']
+  # layout "application", :only => ['edit', 'update']
+  # TODO: finalize the layout is
+  layout :context_layout
   
   # render new.rhtml
   def new
@@ -55,5 +57,12 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  
+  private
+
+  def context_layout
+    logged_in? ? "application" : "login"
   end
 end

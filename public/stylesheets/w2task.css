@@ -117,7 +117,8 @@ a, a:visited, a:hover {
 } 
 #workspace-body #avatar {
 	float: left;
-	margin-top:5px;
+	margin-top: 5px;
+	margin-left: 10px;
 }
 #workspace-body #text {
 	float: left;
@@ -153,6 +154,7 @@ a, a:visited, a:hover {
 	margin-top: 4px;
 	margin-left: 10px;
 	clear: right;
+	margin-right: 10px;
 }
 #delete-icon img {
 	border: none;
