@@ -1,28 +1,35 @@
-<h1>Editing project</h1>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%= link_to 'Show', @project %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+	<div id="efforttitle"><strong>Editing project</strong></div>
+</div>
 
-<% form_for(@project) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :business_id %><br />
-    <%= f.text_field :business_id %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+	<% form_for(@project) do |f| %>
+	  <%= f.error_messages %>
+		<!--
+		  <p>
+		    <%= f.label :user_id %><br />
+		    <%= f.text_field :user_id %>
+		  </p>
+		  <p>
+		    <%= f.label :business_id %><br />
+		    <%= f.text_field :business_id %>
+		  </p>
+		-->
+	  <p>
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	  </p>
+	  <p>
+	    <%= f.label :description %><br />
+	    <%= f.text_area :description %>
+	  </p>
+	  <p>
+	    <%= f.submit "Update" %>
+	  </p>
+	<% end %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+

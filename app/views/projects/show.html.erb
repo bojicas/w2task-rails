@@ -1,23 +1,63 @@
-<p>
-  <b>User:</b>
-  <%=h @project.user_id %>
-</p>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+	<strong><%=h @project.name %></strong> administered by <%=h @project.user.login %>
+</div>
 
 <p>
-  <b>Business:</b>
-  <%=h @project.business_id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%=h @project.name %>
-</p>
-
-<p>
-  <b>Description:</b>
+  <b>Description:</b><br />
   <%=h @project.description %>
 </p>
 
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+	<strong>Timesheet</strong>
+</div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<br />
+
+
+<table style="margin:0; padding:0;">
+	<tr>
+		<td style="width:27px;">&nbsp;</td>
+		<% for i in 1..31 -%>
+			<td style="width:18px; text-align:right; border-style: dotted;
+			border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
+				<%=h i %>
+			</td>
+		<% end -%>
+	</tr>
+	
+	<% for user in @users -%>
+	<tr>
+		<td style="width:27px; text-align:right; border-style: dotted;
+		border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
+				<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
+		</td>
+		<% for i in 1..31 -%>
+			<td style="text-align:right; border-style: dotted;
+			border-width: thin; border-color: #b2b2b2;">
+				&nbsp;
+			</td>
+		<% end -%>
+	</tr>
+	<% end -%>
+</table>
+
+
+<div style="clear:both;">&nbsp;</div>
+
+<% content_for(:sidebar) do -%>
+	<div style="color:black;"><u><strong>PROJECT SIDEBAR</strong></u></div>
+	<br />
+	<div style="color:black;"><u>STATISTICS</u></div>
+	<div style="border-bottom: thin dotted white; width:100%">
+		A total of <%= pluralize @efforts.size, 'effort' %> are recorded,<br />
+		summing up over <%= pluralize (@total_time_spent_on_efforts / 3600).to_i, 'hour' %>.
+	</div>
+<% end -%>

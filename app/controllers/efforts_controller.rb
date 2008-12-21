@@ -17,6 +17,8 @@ class EffortsController < ApplicationController
       :conditions => ["business_id = ?", @business.id]
     ).size
     
+    @total_time_spent_on_efforts = total_time_spent_on_efforts(@business.id)
+      
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -127,6 +129,7 @@ class EffortsController < ApplicationController
   
   private
   
+  # get all efforts, per page ready to be listed
   def get_efforts
     efforts = Effort.paginate(:all, 
       :order => "start DESC, created_at DESC, stop DESC, body", 
@@ -134,5 +137,23 @@ class EffortsController < ApplicationController
       :page => params[:page],
       :per_page => 10 )
     efforts
+  end
+  
+  # find the total time, a user spent on a particular business
+  def total_time_spent_on_efforts(business_id)
+    efforts = Effort.find(:all, 
+      :conditions => { :business_id => business_id }
+    )
+    
+    total_time_spent = 0
+    for effort in efforts
+      if effort.stop
+        total_time_spent += (effort.stop - effort.start)
+      else
+        total_time_spent += (Time.now - effort.start)
+      end
+    end
+    
+    total_time_spent
   end
 end

@@ -15,6 +15,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1.xml
   def show
     @project = Project.find(params[:id])
+    @efforts = Effort.find(:all, 
+      :conditions => { :project_id => @project.id }
+    )
+    @total_time_spent_on_efforts = total_time_spent_on_efforts(@efforts)
+    @users = User.find(:all,
+      :joins => [ :user_associations => :business ],
+      :conditions => { "businesses.nick" => current_subdomain }
+    )
 
     respond_to do |format|
       format.html # show.html.erb
@@ -82,5 +90,21 @@ class ProjectsController < ApplicationController
       format.html { redirect_to(projects_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  
+  private
+  
+  # find the total time, a user spent on a particular business
+  def total_time_spent_on_efforts(efforts)    
+    total_time_spent = 0
+    for effort in efforts
+      if effort.stop
+        total_time_spent += (effort.stop - effort.start)
+      else
+        total_time_spent += (Time.now - effort.start)
+      end
+    end  
+    total_time_spent
   end
 end
