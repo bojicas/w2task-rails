@@ -16,7 +16,7 @@
 		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
 	</div>
-	<strong>Timesheet</strong>
+	<strong>Timesheet</strong> - <%=h Date::MONTHNAMES[Date.today.month] %> <%=h Date.today.year %>
 </div>
 
 <br />
@@ -25,10 +25,10 @@
 <table style="margin:0; padding:0;">
 	<tr>
 		<td style="width:27px;">&nbsp;</td>
-		<% for i in 1..31 -%>
+		<% for day_of_month in 1..Date::new(Date.today.year, Date.today.month, -1).day -%>
 			<td style="width:18px; text-align:right; border-style: dotted;
 			border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
-				<%=h i %>
+				<%=h day_of_month %>
 			</td>
 		<% end -%>
 	</tr>
@@ -39,11 +39,18 @@
 		border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
 				<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
 		</td>
-		<% for i in 1..31 -%>
-			<td style="text-align:right; border-style: dotted;
-			border-width: thin; border-color: #b2b2b2;">
-				&nbsp;
-			</td>
+		<% for day_of_month in 1..Date::new(Date.today.year, Date.today.month, -1).day -%>
+			<% if effort_in_day(user.id, @project.id, Date.today.year, Date.today.month, day_of_month) > 0 -%>
+				<td style="text-align:right; border-style: dotted;
+				border-width: thin; border-color: #b2b2b2; background-color:green;">
+					&nbsp;
+				</td>
+			<% else -%>
+				<td style="text-align:right; border-style: dotted;
+				border-width: thin; border-color: #b2b2b2;">
+					&nbsp;
+				</td>
+			<% end -%>
 		<% end -%>
 	</tr>
 	<% end -%>
