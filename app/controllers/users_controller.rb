@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     
     if verify_recaptcha(@user)
-      success = @user && @user.save
+      success = @user && @user.save 
     else
       success = false
     end
@@ -38,9 +38,10 @@ class UsersController < ApplicationController
   
   # GET /users/2/edit
   def edit
-    if(params[:id].to_i == session[:user_id])
+    if params[:id].to_i == self.current_user.id
       @user = User.find(params[:id])
     else
+      flash[:error] = "Not allowed!"
       redirect_back_or_default('/')
     end
   end
