@@ -38,7 +38,11 @@ class UsersController < ApplicationController
   
   # GET /users/2/edit
   def edit
-    @user = User.find(params[:id])
+    if(params[:id].to_i == session[:user_id])
+      @user = User.find(params[:id])
+    else
+      redirect_back_or_default('/')
+    end
   end
   
   # PUT /users/1
