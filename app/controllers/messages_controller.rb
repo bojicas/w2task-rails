@@ -43,6 +43,8 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
+    # find the user_id
+    @message.recipient_id = User.find_by_login(params[:recipient][:name]).id
 
     respond_to do |format|
       if @message.save

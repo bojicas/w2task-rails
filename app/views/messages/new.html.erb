@@ -17,20 +17,13 @@
 	<div style="float:left;">
 		&nbsp; &nbsp; &nbsp;
 	</div>
-  <div style="float:left;">
-    <%= f.label "Mark as read?" %>
-    <%= f.check_box :readed %>
-  </div>
 	<div style="width:100%;"></div>
 	<br /><br /><br />
 	<div>
 	  <div style="float:left;">
-	    <%= f.label :recipient_id %><br />
-	    <%= f.text_field :recipient_id, :size => 39 %>
-	  </div>
-	  <div style="float:left;">
-	    <%= f.label :sender_id %><br />
-	    <%= f.text_field :sender_id, :size => 39 %>
+	    Recipient<br />
+	    <%= text_field :recipient, :name, :size => 39 %>
+			<%= f.hidden_field :sender_id, :value => current_user.id %>
 	  </div>
 	</div>
 	<div style="width:100%;"></div>
