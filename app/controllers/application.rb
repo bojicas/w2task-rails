@@ -30,9 +30,10 @@ class ApplicationController < ActionController::Base
   def load_business_and_assign_to_user
     @business = Business.find_by_nick(current_subdomain,
       :joins => :user_associations,
-      :conditions => ["user_id = ?", session[:user_id]])
+      :conditions => 
+        { :user_associations => {:user_id => self.current_user.id} })
     
-    session[:user_login] = User.find_by_id(session[:user_id]).login
+    session[:user_login] = User.find_by_id(self.current_user.id).login
       
     if @business.nil?
       flash[:error] = "You are not autorized to access<br />this business data or<br />business does not exist!"
