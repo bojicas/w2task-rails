@@ -10,28 +10,18 @@
 <% form_for(@message) do |f| %>
   <%= f.error_messages %>
 
-  <div style="float:left;">
+	<p>
+    <%= f.label :recipient_id %>
+    <%#= text_field :recipient, :name, :size => 39 %>
+		<%= f.select(:recipient_id, @message.find_users(session[:business_id])) %>
+		<%= f.hidden_field :sender_id, :value => current_user.id %>
     <%= f.label :message_type %>
-    <%= f.select :message_type, { :normal => 0, :invitation => 1 } %>
-  </div>
-	<div style="float:left;">
-		&nbsp; &nbsp; &nbsp;
-	</div>
-	<div style="width:100%;"></div>
-	<br /><br /><br />
-	<div>
-	  <div style="float:left;">
-	    Recipient<br />
-	    <%= text_field :recipient, :name, :size => 39 %>
-			<%= f.hidden_field :sender_id, :value => current_user.id %>
-	  </div>
-	</div>
-	<div style="width:100%;"></div>
-  <br /><br /><br />
-	<div style="width:100%;">
+    <%= f.select :message_type, { :normal => 0 } %>
+	</p>
+	<p>
     <%= f.label :subject %><br />
     <%= f.text_field :subject, :size => 80 %>
-  </div>
+  </p>
   <p>
     <%= f.label :body %><br />
     <%= f.text_area :body, :rows => 6, :cols => 80 %>

@@ -7,4 +7,14 @@ class Message < ActiveRecord::Base
     user = User.find(user_id)
     user
   end
+  
+  def find_users(business_id)
+    User.find(
+      :all,
+      :joins => :user_associations,
+      :conditions => { 
+        :user_associations => { :business_id => business_id }
+      }
+    ).map {|u| ["#{u.login}", u.id]}
+  end
 end

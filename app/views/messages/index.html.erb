@@ -1,7 +1,7 @@
 <div id="workspace-header1" style="background-color: #303030;">
 	<div id="blue-icons">
 		<%# New Business %>
-		<%= link_to 'New message', new_message_path %>
+		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_message_path %>
 	</div>
 	<%# workspace-header1 title %>
 	<strong>Listing messages</strong>
@@ -12,7 +12,6 @@
     <th>Recipient</th>
     <th>Sender</th>
     <th>Subject</th>
-    <th>Message type</th>
   </tr>
 
 <% for message in @messages %>
@@ -23,10 +22,13 @@
 	<% end %>
     <td><%=h message.find_user(message.recipient_id).login %></td>
     <td><%=h message.find_user(message.sender_id).login %></td>
-    <td width="50%"><%=h message.subject %></td>
-    <td><%=h message.message_type %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
+    <td width="75%">
+			<% if message.readed  %>
+				<%= link_to message.subject, message %>
+			<% else %>
+				<%= link_to message.subject, edit_message_path(message) %>
+			<% end %>
+		</td>
     <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
