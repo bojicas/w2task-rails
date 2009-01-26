@@ -15,7 +15,7 @@
   </tr>
 
 <% for message in @messages %>
-	<% if message.readed %>
+	<% if message.read %>
   	<tr>
 	<% else %>
 		<tr style="font-weight: bold;">
@@ -23,7 +23,7 @@
     <td><%=h message.find_user(message.recipient_id).login %></td>
     <td><%=h message.find_user(message.sender_id).login %></td>
     <td width="75%">
-			<% if message.readed  %>
+			<% if message.read  %>
 				<%= link_to message.subject, message %>
 			<% else %>
 				<%= link_to message.subject, edit_message_path(message) %>

@@ -1,3 +1,13 @@
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to 'Edit', edit_message_path(@message) %> |
+		<%= link_to 'Back', messages_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Show message</strong>
+</div>
+
 <p>
   <b>Recipient:</b>
   <%=h @recipient %>
@@ -18,11 +28,15 @@
   <%=h @message.body %>
 </p>
 
-<p>
-  <b>Readed:</b>
-  <%=h @message.readed %>
-</p>
 
+<p>
+<b>Read?:</b>
+	<% if @message.read %>
+		<%=h @message.read %>
+	<% else %>
+		false
+	<% end %>
+</p>
 
 <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', messages_path %>

@@ -1,4 +1,13 @@
-<h1>Editing message</h1>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to 'Show', @message %> |
+		<%= link_to 'Back', messages_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Editing message</strong>
+</div>
+
 
 <% form_for(@message) do |f| %>
   <%= f.error_messages %>
@@ -24,8 +33,8 @@
     <%= f.text_field :message_type %>
   </p>
   <p>
-    <%= f.label :readed %><br />
-    <%= f.check_box :readed %>
+    <%= f.label :read %><br />
+    <%= f.check_box :read %>
   </p>
   <p>
     <%= f.submit "Update" %>

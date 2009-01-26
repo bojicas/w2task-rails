@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081216062851) do
+ActiveRecord::Schema.define(:version => 20090126065029) do
 
   create_table "businesses", :force => true do |t|
     t.string   "nick"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20081216062851) do
     t.string   "subject"
     t.text     "body"
     t.integer  "message_type"
-    t.boolean  "readed"
+    t.boolean  "read"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
