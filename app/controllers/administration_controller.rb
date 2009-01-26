@@ -11,10 +11,5 @@ class AdministrationController < ApplicationController
       :joins => [ :user_associations => :business ],
       :conditions => { "businesses.nick" => current_subdomain }
     )
-       
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @businesses }
-    end
   end
 end

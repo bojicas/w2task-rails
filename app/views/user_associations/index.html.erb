@@ -1,0 +1,35 @@
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_user_association_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Listing all user_associations</strong>
+</div>
+
+<table>
+  <tr>
+		<th>User</th>
+		<th>Business</th>
+		<th>Administrator</th>
+  </tr>
+
+<% for user_association in @user_associations %>
+  <tr>
+		<td><%= User.find(user_association.user_id).login %></td>
+		<td><%= Business.find(user_association.business_id).name %></td>
+		<td><%= check_box_tag(:user_association, :user_association, user_association.administrator, :disabled => true) %> (<%= user_association.administrator %>)</td>
+    <td><%= link_to 'Show', user_association %></td>
+    <td><%= link_to 'Edit', edit_user_association_path(user_association) %></td>
+    <td><%= link_to 'Destroy', user_association, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user_association', new_user_association_path %>
+
+<% content_for(:sidebar) do -%>
+	<%= render :partial => "sidebar" %>
+<% end -%>

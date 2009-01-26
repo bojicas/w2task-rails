@@ -1,0 +1,27 @@
+<h1>Editing user_association</h1>
+
+<% form_for(@user_association) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+		<%= f.label :user_id, "User:" %> <%= User.find(@user_association.user_id).login %>
+		(<%= f.text_field :user_id, :size => 5, :disabled => "disabled" %>)
+	</p>
+
+	<p>
+		<%= f.label :business_id, "Business:" %> <%= Business.find(@user_association.business_id).name %>
+		(<%= f.text_field :business_id, :size => 5, :disabled => "disabled" %>)
+	</p>
+	
+	<p>
+		<%= f.label :administrator %>
+		<%= f.check_box :administrator %>
+	</p>
+	
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @user_association %> |
+<%= link_to 'Back', user_associations_path %>

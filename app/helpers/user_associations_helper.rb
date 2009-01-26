@@ -1,0 +1,2 @@
+module UserAssociationsHelper
+end

@@ -1,0 +1,27 @@
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to 'Edit', edit_user_association_path(@user_association) %> |
+		<%= link_to 'Back', user_associations_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Show all user associations</strong>
+</div>
+
+<p>
+	<strong>User:</strong>
+	<%= User.find(@user_association.user_id).login %>
+</p>
+
+<p>
+	<strong>Business:</strong>
+	<%= Business.find(@user_association.business_id).name %>
+</p>
+
+<p>
+	<strong>Administrator:</strong>
+	<%= @user_association.administrator %>
+</p>
+
+<%= link_to 'Edit', edit_user_association_path(@user_association) %> |
+<%= link_to 'Back', user_associations_path %>

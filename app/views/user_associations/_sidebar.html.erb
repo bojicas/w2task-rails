@@ -9,5 +9,5 @@
 <div style="color:black;"><u>USERS:</u></div>
 <div style="border-bottom: thin dotted white; width:100%">
 	<%= truncate session[:business_name], :length => 25 %> has <%= pluralize @users.size, 'user' %><br />
-	<%= link_to "View", :controller => "user_associations" %> user associations table
+	Go <%= link_to "back", :controller => "administration" %> to the Administration Panel
 </div>
