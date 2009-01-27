@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :wair
+  
   map.resources :pages
 
   map.resources :user_associations
@@ -10,7 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :businesses
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.logout '/wair/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
+  map.login '/wair/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.resources :users

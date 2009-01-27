@@ -9,6 +9,30 @@
 </head>
 <body>
 
+<% if current_subdomain %>
+	<br />
+	<div id="flash-wrapper1" style="width:250px; margin-left:20px;">
+		<% form_tag session_path do -%>
+			<fieldset>
+				<legend id="legend"><strong>Member? Please, log in!</strong></legend>
+				<p>Business: <%= current_subdomain %></p>
+				<p><%= label_tag 'login' %><br />
+				<%= text_field_tag 'login', @login %></p>
+
+				<p><%= label_tag 'password' %><br/>
+				<%= password_field_tag 'password', nil %></p>
+
+				<!-- Uncomment this if you want this functionality -->
+				<p><%= label_tag 'remember_me', 'Remember me' %>
+				<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+
+				<p><%= submit_tag 'Log in' %></p>
+			</fieldset>
+		<% end -%>
+	</div>
+	
+<% else %>
+
 	<%# >>> HEADER-WRAPPER %>
 	<div id="header-wrapper">
 		<br />
@@ -38,6 +62,8 @@
 
 	</div>
 
-<%= render :partial => "/layouts/copyright" %>
+	<%= render :partial => "/layouts/copyright" %>
+
+<% end %>
 </body>
 </html>
