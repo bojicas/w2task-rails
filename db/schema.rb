@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090126065029) do
+ActiveRecord::Schema.define(:version => 20090127044338) do
 
   create_table "businesses", :force => true do |t|
     t.string   "nick"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20090126065029) do
     t.text     "body"
     t.integer  "message_type"
     t.boolean  "read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

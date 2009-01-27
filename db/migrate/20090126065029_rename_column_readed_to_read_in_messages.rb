@@ -4,6 +4,6 @@ class RenameColumnReadedToReadInMessages < ActiveRecord::Migration
   end
 
   def self.down
-    rename_column :messages, :readed, :read
+    rename_column :messages, :read, :readed
   end
 end
