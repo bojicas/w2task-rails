@@ -135,7 +135,7 @@ class WairController < ApplicationController
       :order => "start DESC, created_at DESC, stop DESC, body", 
       :conditions => ["business_id = ?", @business.id],
       :page => params[:page],
-      :per_page => 10 )
+      :per_page => 5 )
     efforts
   end
   
