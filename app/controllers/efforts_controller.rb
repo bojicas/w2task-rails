@@ -79,13 +79,15 @@ class EffortsController < ApplicationController
     respond_to do |format|
       if @effort.save
         flash[:notice] = 'Effort was successfully created.'
-        format.html { redirect_to(efforts_url) }
+        # format.html { redirect_to(efforts_url) }
+        format.html { redirect_to :back }
         @efforts = get_efforts
         format.js
         #format.xml  { render :xml => @effort, :status => :created, :location => @effort }
       else
         flash[:error] = 'Cannot create effort.'
-        format.html { render :action => "new" }
+        # format.html { render :action => "new" }
+        format.html { redirect_to :back }
         @efforts = get_efforts
         format.js
         #format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
@@ -103,13 +105,15 @@ class EffortsController < ApplicationController
         flash[:notice] = 'Effort was successfully updated.'
         @efforts = get_efforts
         format.js
-        format.html { redirect_to(:action => index) }
+        format.html { redirect_to :back }
+        #format.html { redirect_to(:action => index) }
         #format.xml  { head :ok }
       else
         flash[:notice] = 'Effort was not successfully updated.'
         @efforts = get_efforts
         format.js
-        format.html { render :action => "edit" }
+        format.html { redirect_to :back }
+        # format.html { render :action => "edit" }
         #format.xml  { render :xml => @effort.errors, :status => :unprocessable_entity }
       end
     end

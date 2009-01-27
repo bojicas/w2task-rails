@@ -4,11 +4,11 @@
 	<%= f.hidden_field(:user_id, :value => session[:user_id]) %>
 	<%= f.hidden_field :business_id, :value => @business.id %>
 
-  <div style="float:left;padding:15px;">
+  <p>
     <%= f.label "Enter your effort body text:" %><br />
     <%= f.text_area :body, :cols => 35, :rows => 4 %>
-  </div>
-	<div style="float:right; text-align:right;padding:15px;">
+  </p>
+	<p>
   	<%= f.label :start %>
 	  <%= f.datetime_select :start %><br />
 
@@ -22,5 +22,7 @@
 	  <%= f.check_box :billable %>
 	  <br />
 	  <%= f.submit "Create" %>
-	</div>
+	</p>
 <% end %>
+
+<%= link_to '&lt;&lt; Back', :controller => 'wair' %>
