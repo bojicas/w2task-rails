@@ -2,16 +2,24 @@
 <div style="float:left; padding: 5px 15px 5px 15px;">
 	<%= image_tag "/images/w2task.png" %>
 </div>
-<div style="text-align:left; margin-left:15px;">
-	&copy; 2008 - 2009 w2task.com. All rights reserved<br />
-	<%= link_to "Terms & Conditions",
-		"javascript:bojicas_launchme('/pages/terms_and_conditions', 'height=480, width=760')" 
-	%> | 
-	<%= link_to "Confidentiality Policy",
-		"javascript:bojicas_launchme('/pages/confidentiality_policy', 'height=480, width=760')" 
-	%> | 
-	<%= link_to "Credits",
-		"javascript:bojicas_launchme('/pages/credits', 'height=480, width=760')"
-	%><br />
-	A web service provided by <em>Offshore Technical Management Solutions FZC</em>, Ajman FZ, UAE<br /><br />
-</div>
+
+<% if controller.controller_name == 'pages' %>
+	<div style="text-align:left; margin-left:15px;">
+		&copy; 2008 - 2009 w2task.com. All rights reserved<br />
+		A web service provided by <em>Offshore Technical Management Solutions FZC</em>, Ajman FZ, UAE<br />
+	</div>
+<% else %>
+	<div style="text-align:left; margin-left:15px;">
+		&copy; 2008 - 2009 w2task.com. All rights reserved<br />
+		<%= link_to "Terms & Conditions",
+			"javascript:bojicas_launchme('/pages/terms_and_conditions', 'height=480, width=760')" 
+		%> | 
+		<%= link_to "Confidentiality Policy",
+			"javascript:bojicas_launchme('/pages/confidentiality_policy', 'height=480, width=760')" 
+		%> | 
+		<%= link_to "Credits",
+			"javascript:bojicas_launchme('/pages/credits', 'height=480, width=760')"
+		%><br />
+		A web service provided by <em>Offshore Technical Management Solutions FZC</em>, Ajman FZ, UAE<br /><br />
+	</div>
+<% end %>
