@@ -6,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>w2task (Your Web 2.0 Task Manager) - <%= controller.controller_name %> / <%= controller.action_name %> - <%= current_subdomain %></title>
   <%= stylesheet_link_tag 'scaffold', 'w2task' %>
-	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag :defaults, 'bojicas' %>
 </head>
 <body>
 
@@ -15,7 +15,9 @@
 		<div id="admin-menu">
 			<div style="float:right;">
 				&nbsp;
-				<%= image_tag('/images/001_61.png', :style => "margin-top:1px;") %>
+				<%= link_to image_tag('/images/001_61.png', :style => "margin-top:1px;"),
+					"javascript:bojicas_launchme('/pages/help', 'height=480, width=760')" 
+				%>
 			</div>
 			<div style="float:right;">
 				Howdy, you are logged in as 
