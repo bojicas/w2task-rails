@@ -11,6 +11,9 @@
 
 	<%# >>> HEADER-WRAPPER %>
 	<div id="header-wrapper">
+		<div style="float:right; padding:3px;">
+			<%= image_tag "/images/w2task.png" %>
+		</div>
 		<br />
 		<b>
 			<%=h truncate session[:business_name], :length => 35 %> - <%=h @page_title || "Dashboard" %>
