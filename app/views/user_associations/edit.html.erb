@@ -1,4 +1,12 @@
-<h1>Editing user_association</h1>
+<div id="workspace-header1" style="background-color: #303030;">
+	<div id="blue-icons">
+		<%# New Business %>
+		<%= link_to 'Show', @user_association %> |
+		<%= link_to 'Back', user_associations_path %>
+	</div>
+	<%# workspace-header1 title %>
+	<strong>Editing user association</strong>
+</div>
 
 <% form_for(@user_association) do |f| %>
   <%= f.error_messages %>
