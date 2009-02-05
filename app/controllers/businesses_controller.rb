@@ -8,7 +8,10 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.xml
   def show
-    @business = Business.find(params[:id])
+    # this is the original line, which has been replaced due to
+    # security reasons. now the search is bound to current_user
+    # @business = Business.find(params[:id])
+    @business = current_user.businesses.find_by_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,7 +33,10 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/1/edit
   def edit
-    @business = Business.find(params[:id])
+    # this is the original line, which has been replaced due to
+    # security reasons. now the search is bound to current_user
+    # @business = Business.find(params[:id])
+    @business = current_user.businesses.find_by_id(params[:id])
   end
 
   # POST /businesses
@@ -54,7 +60,10 @@ class BusinessesController < ApplicationController
   # PUT /businesses/1
   # PUT /businesses/1.xml
   def update
-    @business = Business.find(params[:id])
+    # this is the original line, which has been replaced due to
+    # security reasons. now the search is bound to current_user
+    # @business = Business.find(params[:id])
+    @business = current_user.businesses.find_by_id(params[:id])
 
     respond_to do |format|
       if @business.update_attributes(params[:business])
@@ -71,7 +80,10 @@ class BusinessesController < ApplicationController
   # DELETE /businesses/1
   # DELETE /businesses/1.xml
   def destroy
-    @business = Business.find(params[:id])
+    # this is the original line, which has been replaced due to
+    # security reasons. now the search is bound to current_user
+    # @business = Business.find(params[:id])
+    @business = current_user.businesses.find_by_id(params[:id])
     @business.destroy
 
     respond_to do |format|
