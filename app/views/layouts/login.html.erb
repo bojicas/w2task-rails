@@ -38,7 +38,12 @@
 	<div id="header-wrapper">
 		<br />
 		<h1>w2task beta</h1>
-		<div id="clear-both">&nbsp;</div>
+
+		<div id="main-menu-right-wrapper">
+			<%# lic might work better, but in this moment I can't get :id => "main menu" working %>
+			<%= link_to 'Development Log', 'http://blog.w2task.com', :id => 'main-menu', :target => '_blank' %>
+			<%= link_to 'Support Center', 'http://support.w2task.com', :id => 'main-menu', :style => "background-color: #303030; z-index:-10000;", :target => '_blank' %>
+		</div>
 		<div style = "background-color: #1A4F85; clear:both; height:5px; padding-top:3px;"><br /></div>
 	</div>
 	<%# <<< HEADER-WRAPPER %>
