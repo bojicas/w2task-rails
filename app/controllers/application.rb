@@ -28,6 +28,15 @@ class ApplicationController < ActionController::Base
   end
   
   def load_business_and_assign_to_user
+    
+    # this is useful, when coming back from support center, or development log
+    # the user is redirected back to its business
+    if session[:business_id] && !current_subdomain
+      business_nick = Business.find(session[:business_id]).nick
+      redirect_to efforts_path(:subdomain => "#{session[:business_nick]}")
+      return
+    end
+    
     @business = Business.find_by_nick(current_subdomain,
       :joins => :user_associations,
       :conditions => 
@@ -41,7 +50,7 @@ class ApplicationController < ActionController::Base
       session[:business_id] = nil
       redirect_to :controller => :administration, :action => :index
     else
-      session[:business_name] = @business.name 
+      session[:business_name] = @business.name
       session[:business_id] = @business.id
     end
   end
