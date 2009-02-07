@@ -32,9 +32,11 @@ class ApplicationController < ActionController::Base
     # this is useful, when coming back from support center, or development log
     # the user is redirected back to its business
     if session[:business_id] && !current_subdomain
-      business_nick = Business.find(session[:business_id]).nick
-      redirect_to efforts_path(:subdomain => "#{session[:business_nick]}")
-      return
+      business_nick = Business.find(session[:business_id].to_i).nick
+      if business_nick
+        redirect_to efforts_path(:subdomain => business_nick)
+        return
+      end
     end
     
     @business = Business.find_by_nick(current_subdomain,
