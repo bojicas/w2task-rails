@@ -28,23 +28,30 @@ class ApplicationController < ActionController::Base
   end
   
   def load_business_and_assign_to_user
-    
     # this is useful, when coming back from support center, or development log
     # the user is redirected back to its business
     if session[:business_id] && !current_subdomain
-      business_nick = Business.find(session[:business_id].to_i).nick
+      business_nick = current_user.businesses.find(session[:business_id].to_i).nick
       if business_nick
         redirect_to efforts_path(:subdomain => business_nick)
         return
       end
     end
     
-    @business = Business.find_by_nick(current_subdomain,
-      :joins => :user_associations,
-      :conditions => 
-        { :user_associations => {:user_id => self.current_user.id} })
+    # if the user is asigned to only one business, then redirect to it
+    if !current_subdomain
+      business_nicks = current_user.businesses.find(:all)
+      if business_nicks.size == 1
+        redirect_to efforts_path(:subdomain => business_nicks[0].nick)
+        return
+      end
+    end
     
-    session[:user_login] = User.find_by_id(self.current_user.id).login
+    # at this point I must be already redirected. the only other choice
+    # is that the user is not associated with any other businesses
+    @business = current_user.businesses.find_by_nick(current_subdomain)
+        
+    # session[:user_login] = User.find_by_id(self.current_user.id).login
       
     if @business.nil?
       flash[:error] = "You are not autorized to access<br />this business data or<br />business does not exist!"
