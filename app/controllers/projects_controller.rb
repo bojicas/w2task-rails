@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   def show
     if params[:id].to_i == 0
       @project = Project.new
+      @project.id = nil
       @project.name = "Internal Effort"
       @project.description = "This is a list of efforts which are not directly attached to a project."
       @project.user_id = current_user.id

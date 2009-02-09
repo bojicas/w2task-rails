@@ -43,7 +43,7 @@
 				<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
 		</td>
 		<% for day_of_month in 1..Date::new(Date.today.year, Date.today.month, -1).day -%>
-			<% if effort_in_day(user.id, @project.id, Date.today.year, Date.today.month, day_of_month) > 0 -%>
+			<% if effort_in_day(user.id, @business.id, @project.id, Date.today.year, Date.today.month, day_of_month) > 0 -%>
 				<td style="text-align:right; border-style: dotted;
 				border-width: thin; border-color: #b2b2b2; background-color:green;">
 					&nbsp;
