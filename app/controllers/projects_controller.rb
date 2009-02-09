@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  
+  before_filter :load_business_and_assign_to_user
+    
   # GET /projects
   # GET /projects.xml
   def index

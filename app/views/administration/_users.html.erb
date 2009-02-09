@@ -17,7 +17,7 @@
 							<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
 						</div>
 						<div style="float:left; margin-left:10px;"> &nbsp; <br /> &nbsp; </div>
-						<div style="align:left;min-width:350px; margin-left:10px; padding-left:10px;">
+						<div style="align:left;min-width:450px; margin-left:10px; padding-left:10px;">
 							<%=h user.login %> /
 					    <%=h user.email %>
 							<br />
@@ -30,7 +30,7 @@
 									<% end %>
 								<% end %>
 							<% end %>
-							<%=h "(This is you)" if user.id == session[:user_id] %>
+							<%=h "(This is you, and your user id is #{current_user.id}.)" if user.id == session[:user_id] %>
 						</div>
 					</div>
 				
@@ -40,5 +40,11 @@
 		</li>
 		<% end %>
 	</ul>
+	<p>
+		&nbsp; &nbsp;<strong>Do you want to add more users to your business?</strong> Then ask your
+		co-workers to create an account with <em>W2task</em> and provide you with their user id.
+		The user id is displayed in the next screen, after the user logs in. Simple,
+		isn't it? For more details, please consult the <%= link_to "Support Center", "http://support.w2task.com", :target => "_blank" %>.
+	</p>
 </div>
 <br />

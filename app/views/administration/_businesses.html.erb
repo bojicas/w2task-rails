@@ -6,6 +6,26 @@
 	<%# workspace-header1 title %>
 	<strong>Current Businesses</strong>
 </div>
+
+<% if @businesses.size == 0 %>
+	<p>
+		<strong>You are currently associated with no businesses. What to do now?</strong>
+	</p>
+	<p>
+		&nbsp; &nbsp;1. Create a new business, by pressing the <%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_business_path %>
+	 	sign from above.
+	</p>
+	<p>
+		&nbsp; &nbsp;2. Take a note that your user id number is <strong><%= current_user.id %></strong>. Give it 
+		to a business administrator if you would like to join an already formed business.
+	</p>
+<% elsif !current_subdomain %>
+	<p>
+		<strong>You have to select a business bellow by pressing <u>Select</u> button from the right of the business' nick name, in order to access its data.</strong>
+	</p>
+<% end %>
+
+
 <div id="workspace-body">
 	<ul>
 		<% for business in @businesses %>
@@ -17,7 +37,8 @@
 		    <%= link_to 'Destroy', business, :confirm => 'Are you sure?', :method => :delete %>
 				<br />
 				<%= business.description %>
-		</li>
+			</li>
+			<li><div id="clear-both-top-dotted" style="background-color:#FFFFFF"></div></li>
 		<% end %>
 	</ul>
 </div>

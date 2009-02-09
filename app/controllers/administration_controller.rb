@@ -2,10 +2,7 @@ class AdministrationController < ApplicationController
   def index
     @page_title = "Administration"
     
-    @businesses = Business.find(:all,
-      :joins => [ :user_associations => :user ],
-      :conditions => { "users.id" => session[:user_id] }
-    )
+    @businesses = current_user.businesses.find(:all)
    
     @users = User.find(:all,
       :joins => [ :user_associations => :business ],

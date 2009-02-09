@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     # session[:user_login] = User.find_by_id(self.current_user.id).login
       
     if @business.nil?
-      flash[:error] = "You are not autorized to access<br />this business data or<br />business does not exist!"
+      flash[:error] = "You should select/create a business!"
       session[:business_name] = "No business!"
       session[:business_id] = nil
       redirect_to :controller => :administration, :action => :index

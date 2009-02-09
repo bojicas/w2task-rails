@@ -1,5 +1,8 @@
 <%= render :partial => "businesses" %>
-<%= render :partial => "users" %>
+
+<% if current_user.businesses.find_by_nick(current_subdomain) %>
+	<%= render :partial => "users" %>
+<% end %>
 
 <% content_for(:sidebar) do -%>
 	<%= render :partial => "sidebar" %>
