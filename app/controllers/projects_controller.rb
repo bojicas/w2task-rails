@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
     else
       @project = current_user.projects.find(params[:id])
       @efforts = current_user.efforts.find(:all, 
-        :conditions => { :project_id => @project.id }
+        :conditions => { :project_id => @project.id, :business_id => session[:business_id] }
       )
     end
 
