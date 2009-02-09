@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<br />
-		<h1><%=h truncate current_user.businesses.find_by_nick(current_subdomain).name, :length => 35 %> - <%=h @page_title || "Dashboard" %></h1>
+		<h1><%=h truncate current_user.businesses.find_by_nick(current_subdomain).name, :length => 35 if current_user.businesses.find_by_nick(current_subdomain) %> - <%=h @page_title || "Dashboard" %></h1>
 		<div id="clear-both">&nbsp;</div>
 		<div id="main-menu-left-wrapper">
 			<%= link_to '&radic; &nbsp;Efforts', efforts_url, :id => "main-menu" %>
