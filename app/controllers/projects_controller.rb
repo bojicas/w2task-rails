@@ -17,10 +17,22 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = Project.find(params[:id])
-    @efforts = Effort.find(:all, 
-      :conditions => { :project_id => @project.id }
-    )
+    if params[:id].to_i == 0
+      @project = Project.new
+      @project.name = "Internal Effort"
+      @project.description = "This is a list of efforts which are not directly attached to a project."
+      @project.user_id = current_user.id
+      @project.business_id = session[:business_id]
+      @efforts = Effort.find(:all, 
+        :conditions => { :project_id => nil }
+      )
+    else
+      @project = Project.find(params[:id])
+      @efforts = Effort.find(:all, 
+        :conditions => { :project_id => @project.id }
+      )
+    end
+
     @total_time_spent_on_efforts = total_time_spent_on_efforts(@efforts)
     @users = User.find(:all,
       :joins => [ :user_associations => :business ],
