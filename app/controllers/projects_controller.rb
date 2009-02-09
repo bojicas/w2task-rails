@@ -23,12 +23,13 @@ class ProjectsController < ApplicationController
       @project.description = "This is a list of efforts which are not directly attached to a project."
       @project.user_id = current_user.id
       @project.business_id = session[:business_id]
-      @efforts = Effort.find(:all, 
+      
+      @efforts = current_user.efforts.find(:all, 
         :conditions => { :project_id => nil }
       )
     else
-      @project = Project.find(params[:id])
-      @efforts = Effort.find(:all, 
+      @project = current_user.projects.find(params[:id])
+      @efforts = current_user.efforts.find(:all, 
         :conditions => { :project_id => @project.id }
       )
     end
