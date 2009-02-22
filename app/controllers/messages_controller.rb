@@ -2,7 +2,9 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.xml
   def index
-    @messages = Message.find(:all)
+    @messages = Message.find(:all,
+      :conditions => ["recipient_id = ? OR sender_id = ?", current_user.id, current_user.id]
+    )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,9 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.xml
   def show
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:id],
+      :conditions => ["recipient_id = ? OR sender_id = ?", current_user.id, current_user.id]
+    )
     @recipient = User.find(@message.recipient_id).login
     @sender = User.find(@message.sender_id).login
 
@@ -36,7 +40,9 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:id],
+      :conditions => ["recipient_id = ? OR sender_id = ?", current_user.id, current_user.id]
+    )
   end
 
   # POST /messages
@@ -59,7 +65,9 @@ class MessagesController < ApplicationController
   # PUT /messages/1
   # PUT /messages/1.xml
   def update
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:id],
+      :conditions => ["recipient_id = ? OR sender_id = ?", current_user.id, current_user.id]
+    )
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
