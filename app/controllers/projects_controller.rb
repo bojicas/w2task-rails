@@ -17,6 +17,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
+    if params[:from_calendar_date] and params[:to_calendar_date] and params[:from_calendar_date].to_date <= params[:to_calendar_date].to_date
+      @from_calendar_date  = params[:from_calendar_date].to_date
+      @to_calendar_date    = params[:to_calendar_date].to_date
+    else
+      @from_calendar_date  = "#{Date::MONTHNAMES[Date.today.month]} 01, #{Date.today.year}".to_date 
+      @to_calendar_date    = Date.today
+    end
+    
     if params[:id].to_i == 0
       @project = Project.new
       @project.id = nil
@@ -26,12 +34,18 @@ class ProjectsController < ApplicationController
       @project.business_id = session[:business_id]
       
       @efforts = current_user.efforts.find(:all, 
-        :conditions => { :project_id => nil, :business_id => session[:business_id] }
+        :conditions => { 
+          :project_id => nil, 
+          :business_id => session[:business_id]
+        }
       )
     else
       @project = current_user.projects.find(params[:id])
       @efforts = current_user.efforts.find(:all, 
-        :conditions => { :project_id => @project.id, :business_id => session[:business_id] }
+        :conditions => {
+          :project_id => @project.id,
+          :business_id => session[:business_id]
+        }
       )
     end
 

@@ -9,6 +9,8 @@
 	<% end %>
 </div>
 
+<%= debug params %>
+
 <p>
   <b>Description:</b><br />
   <%=h @project.description %>
@@ -17,53 +19,72 @@
 
 <div id="workspace-header1" style="background-color: #303030;">
 	<div id="blue-icons">
-			From:
-			<%= calendar_date_select_tag "from_calendar_date", Date.today %>
-			&nbsp;&nbsp;
-			To:
-			<%= calendar_date_select_tag "from_calendar_date", Date.today %>
 	</div>
-	<strong>Timesheet</strong> - <%=h Date::MONTHNAMES[Date.today.month] %>
-	<%=h Date.today.year %>
+
+	<% form_tag @project, :method => :get do %>
+		<strong>Timesheet</strong>
+		&nbsp;&nbsp;
+		from:
+		<%= calendar_date_select_tag "from_calendar_date", @from_calendar_date %>
+		&nbsp;&nbsp;
+		to:
+		<%= calendar_date_select_tag "to_calendar_date", @to_calendar_date %>
+		
+		<%= submit_tag 'Go', :name => nil %>
+	<% end %>
+
 </div>
 
 <br />
 
+<% (@from_calendar_date.year..@to_calendar_date.year).each do |year| -%>
 
-<table style="margin:0; padding:0;">
-	<tr>
-		<td style="width:27px;">&nbsp;</td>
-		<% for day_of_month in 1..Date::new(Date.today.year, Date.today.month, -1).day -%>
-			<td style="width:18px; text-align:right; border-style: dotted;
-			border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
-				<%=h day_of_month %>
-			</td>
-		<% end -%>
-	</tr>
+	<% from_month = 1 %>
+	<% to_month = 12 %>
+	<% from_month = @from_calendar_date.month if year == @from_calendar_date.year %>
+	<% to_month = @to_calendar_date.month if year == @to_calendar_date.year %>				
 	
-	<% for user in @users -%>
-	<tr>
-		<td style="width:27px; text-align:right; border-style: dotted;
-		border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
-				<%= image_tag user.avatar.url(:thumb), :size => "24x24" %>
-		</td>
-		<% for day_of_month in 1..Date::new(Date.today.year, Date.today.month, -1).day -%>
-			<% if effort_in_day(user.id, @business.id, @project.id, Date.today.year, Date.today.month, day_of_month) > 0 -%>
-				<td style="text-align:right; border-style: dotted;
-				border-width: thin; border-color: #b2b2b2; background-color:green;">
-					&nbsp;
+	<strong>Year:</strong> <%= year %><br />
+	
+	<% (from_month..to_month).each do |month| %>
+		Timesheet <%= Date::new(year, month) %> - <%= Date::new(year, month, -1) %>
+		<table style="margin:0; padding:0;">
+			<tr>
+				<td style="width:27px;">&nbsp;</td>
+				<% for day_of_month in 1..Date::new(year, month, -1).day -%>
+					<td style="width:18px; text-align:right; border-style: dotted;
+					border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
+						<%=h day_of_month %>
+					</td>
+				<% end -%>
+			</tr>
+	
+			<% for user in @users -%>
+			<tr>
+				<td style="width:27px; text-align:right; border-style: dotted;
+				border-width: thin; border-color: #b2b2b2;margin:0; padding:0;">
+						<%= image_tag user.avatar.url(:thumb), :size => "24x24", :alt => "#{user.login}", :title => "#{user.login}" %>
 				</td>
-			<% else -%>
-				<td style="text-align:right; border-style: dotted;
-				border-width: thin; border-color: #b2b2b2;">
-					&nbsp;
-				</td>
+		
+					<% for day_of_month in 1..Date::new(year, month, -1).day -%>
+						<% if effort_in_day(user.id, @business.id, @project.id, year, month, day_of_month) > 0 -%>
+							<td style="text-align:right; border-style: dotted;
+							border-width: thin; border-color: #b2b2b2; background-color:green;">
+								&nbsp;
+							</td>
+						<% else -%>
+							<td style="text-align:right; border-style: dotted;
+							border-width: thin; border-color: #b2b2b2;">
+								&nbsp;
+							</td>
+						<% end -%>
+					<% end -%>
+			</tr>
 			<% end -%>
-		<% end -%>
-	</tr>
+		</table>
+		<br />
 	<% end -%>
-</table>
-
+<% end -%>
 
 <div style="clear:both;">&nbsp;</div>
 
