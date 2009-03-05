@@ -14,12 +14,17 @@
   <%=h @project.description %>
 </p>
 
+
 <div id="workspace-header1" style="background-color: #303030;">
 	<div id="blue-icons">
-		<%= link_to 'Edit', edit_project_path(@project) unless params[:id].to_i == 0 %> |
-		<%= link_to 'Back', projects_path %>
+			From:
+			<%= calendar_date_select_tag "from_calendar_date", Date.today %>
+			&nbsp;&nbsp;
+			To:
+			<%= calendar_date_select_tag "from_calendar_date", Date.today %>
 	</div>
-	<strong>Timesheet</strong> - <%=h Date::MONTHNAMES[Date.today.month] %> <%=h Date.today.year %>
+	<strong>Timesheet</strong> - <%=h Date::MONTHNAMES[Date.today.month] %>
+	<%=h Date.today.year %>
 </div>
 
 <br />
