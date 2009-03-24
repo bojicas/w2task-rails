@@ -9,7 +9,6 @@
 	<% end %>
 </div>
 
-<%= debug params %>
 
 <p>
   <b>Description:</b><br />
@@ -44,10 +43,10 @@
 	<% from_month = @from_calendar_date.month if year == @from_calendar_date.year %>
 	<% to_month = @to_calendar_date.month if year == @to_calendar_date.year %>				
 	
-	<strong>Year:</strong> <%= year %><br />
+	<u><strong>Year:</strong> <%= year %></u><br />
 	
 	<% (from_month..to_month).each do |month| %>
-		Timesheet <%= Date::new(year, month) %> - <%= Date::new(year, month, -1) %>
+		<b>Timesheet</b> <%= Date::new(year, month) %> - <%= Date::new(year, month, -1) %>
 		<table style="margin:0; padding:0;">
 			<tr>
 				<td style="width:27px;">&nbsp;</td>
@@ -67,7 +66,17 @@
 				</td>
 		
 					<% for day_of_month in 1..Date::new(year, month, -1).day -%>
-						<% if effort_in_day(user.id, @business.id, @project.id, year, month, day_of_month) > 0 -%>
+						<% if year == @from_calendar_date.year && month == from_month && day_of_month < @from_calendar_date.day %>
+							<td style="text-align:right; border-style: dotted;
+							border-width: thin; border-color: #b2b2b2; background-color:lightgray;">
+								&nbsp;
+							</td>
+						<% elsif year == @to_calendar_date.year && month == to_month && day_of_month > @to_calendar_date.day %>
+							<td style="text-align:right; border-style: dotted;
+							border-width: thin; border-color: #b2b2b2; background-color:lightgray;">
+								&nbsp;
+							</td>							
+						<% elsif effort_in_day(user.id, @business.id, @project.id, year, month, day_of_month) > 0 -%>
 							<td style="text-align:right; border-style: dotted;
 							border-width: thin; border-color: #b2b2b2; background-color:green;">
 								&nbsp;
