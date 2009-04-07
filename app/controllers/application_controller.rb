@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   
   def load_business_and_assign_to_user
     # this is useful, when coming back from support center, or development log
-    # the user is redirected back to its business
+    # the user is redirected back to his business
     if session[:business_id] && !current_subdomain
       business_nick = current_user.businesses.find(session[:business_id].to_i).nick
       if business_nick
