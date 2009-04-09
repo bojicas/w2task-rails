@@ -97,12 +97,25 @@ a, a:visited, a:hover {
 }
 /* <<< WORKSPACE-WRAPPER */
 /* WORKSPACE-HEADER1 >>> */
-#workspace-header1 {
+#workspace-header-blue {
 	clear: both;
 	/* border: thin dotted #DDDDDD; */
 	background-color: #1A4F85;
 	color: white;
 	padding: 10px;
+}
+#workspace-header-black {
+	clear: both;
+	background-color: #303030;
+	color: white;
+	padding: 10px;
+}
+#workspace-header-paginate {
+	clear: both;
+	background-color: #1A4F85;
+	color: white;
+	padding: 10px;
+	text-align: right;
 }
 /* <<< WORKSPACE-HEADER1 */
 /* WORKSPACE-BODY >>> */
