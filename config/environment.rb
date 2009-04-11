@@ -53,13 +53,13 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   if RAILS_ENV=='production'
     config.action_controller.session = {
-      :session_domain => ".w2task.com",
+      :session_domain => "w2task.com",
       :session_key => '_w2task_session',
       :secret      => '82e46b04d993fb85118b37d356dd71fd86f22c0425d6aa9de6698d0629f27f97af0c1eb34458c49c5871941a46d7ab04fdcd57d639c53be0d61b5201cc4e8e52'
     }
   else
     config.action_controller.session = {
-      :session_domain => ".w2task.local",
+      :session_domain => "w2task.local",
       :session_key => '_w2task_session',
       :secret      => '82e46b04d993fb85118b37d356dd71fd86f22c0425d6aa9de6698d0629f27f97af0c1eb34458c49c5871941a46d7ab04fdcd57d639c53be0d61b5201cc4e8e52'
     }
