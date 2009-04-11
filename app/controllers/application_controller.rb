@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-  session :session_key => '_w2task_session_id' 
+  # session :session_key => '_w2task_session_id' 
   
   before_filter :login_required
   before_filter :set_user_time_zone
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery :secret => 'd84522da647e8497fc72462a9dd3e59d'
+  # protect_from_forgery :secret => 'd84522da647e8497fc72462a9dd3e59d'
   
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
