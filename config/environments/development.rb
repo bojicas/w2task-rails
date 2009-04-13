@@ -17,4 +17,7 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = false
 
 # Keeping session data accross subdomains
-ActionController::Base.session_options[:session_domain] = '.w2task.local'
+# ActionController::Base.session_options[:session_domain] = '.w2task.local'
+config.action_controller.session = { 
+  :domain => ".w2task.local" 
+}
