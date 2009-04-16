@@ -6,7 +6,7 @@ one:
   subject: MyString
   body: MyText
   message_type: 1
-  readed: false
+  read: false
 
 two:
   recipient_id: 1
@@ -14,4 +14,4 @@ two:
   subject: MyString
   body: MyText
   message_type: 1
-  readed: false
+  read: false

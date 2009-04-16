@@ -1,13 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  nick: MyString
-  name: MyString
-  description: MyText
-  country_id: 1
+snbstyle:
+  nick: snbstyle
+  name: "S&B Style S.R.L."
+  description: "Iasi, Romania"
+  country: ro
 
-two:
-  nick: MyString
-  name: MyString
-  description: MyText
-  country_id: 1
+bojicas:
+  nick: bojicas
+  name: "Bojicas Ltd."
+  description: "My dream company"
+  country: ae
+
+otms:
+  nick: otms
+  name: "Offshore Technical Management Solutions FZC"
+  description: "Where I am wotking on"
+  country: ae
+
+penmach:
+  nick: penmach
+  Name: "Penmach Ltd"
+  description: "Isle of Man"
+  country: uk

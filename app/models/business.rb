@@ -14,7 +14,9 @@ class Business < ActiveRecord::Base
   # couldn't find yet the reason to use named_scope
   # i can get same functionality via find_by_nick(current_subdomain)
   # named_scope :current_business, lambda { |current_subdomain| { :conditions => { :businesses => { :nick => current_subdomain } } } }
- 
+  
+
+
   def user_association_attributes=(user_association_attributes)
     user_associations.build(user_association_attributes)
   end

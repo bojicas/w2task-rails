@@ -19,10 +19,10 @@
     <%= f.label :country_id %><br />
 		<%= f.select :country_id, Country.find_for_select %>
   </p>
-  <% fields_for "business[user_association_attributes]", @business.user_associations do |ua| %>
-		<%= ua.hidden_field :user_id, :value => session[:user_id] %>
-		<%= ua.hidden_field :administrator, :value => true %>
-  <% end %>
+  <%# fields_for "business[user_association_attributes]", @business.user_associations do |ua| %>
+		<%#= ua.hidden_field :user_id, :value => session[:user_id] %>
+		<%#= ua.hidden_field :administrator, :value => true %>
+  <%# end %>
 
   <p>
     <%= f.submit "Create" %>

@@ -1,23 +1,23 @@
 <p>
   <b>Nick:</b>
-  <%=h @business.nick %>
+  <%=h @business.nick if @business %>
 </p>
 
 <p>
   <b>Name:</b>
-  <%=h @business.name %>
+  <%=h @business.name if @business %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%=h @business.description %>
+  <%=h @business.description if @business %>
 </p>
 
 <p>
   <b>Country:</b>
-  <%=h @business.country.name %>
+  <%=h @business.country.name if @business %>
 </p>
 
 
-<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Edit', edit_business_path(@business) if @business %> |
 <%= link_to 'Back', businesses_path %>

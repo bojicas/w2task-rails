@@ -1,7 +1,7 @@
 <div id="workspace-header1" style="background-color: #303030;">
-	<div id="efforttitle"><strong><%=h @page.title %></strong></div>
+	<div id="efforttitle"><strong><%=h @page.title if @page %></strong></div>
 </div>
 
 <div style="margin:15px;">
-  <%= @page.body %>
+  <%= @page.body if @page %>
 </div>

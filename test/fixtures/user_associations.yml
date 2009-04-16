@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user_id: 1
-  business_id: 1
-  administrator: false
+  user: quentin
+  business: snbstyle
+  administrator: true
 
 two:
-  user_id: 1
-  business_id: 1
+  user: aaron
+  business: otms
   administrator: false
