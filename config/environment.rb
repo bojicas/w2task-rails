@@ -70,4 +70,5 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
   
   config.gem "calendar_date_select"
+  config.gem "newrelic_rpm"
 end
