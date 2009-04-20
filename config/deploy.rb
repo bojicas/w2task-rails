@@ -1,5 +1,5 @@
 require 'erb'
-#require 'config/accelerator/accelerator_tasks'
+require 'config/accelerator/accelerator_tasks'
  
 set :application, "w2task" #matches names used in smf_template.erb
 set :repository,  "git@github.com:bojicas/w2task.git"
