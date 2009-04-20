@@ -1,19 +1,19 @@
 Capistrano::Configuration.instance(:must_exist).load do
   namespace :accelerator do
  
-#    desc "Adds a SMF for the application"
-#    task :create_smf, :roles => :app do
-#      puts "set variables"
-#      service_name = application
-#      working_directory = current_path
+    desc "Adds a SMF for the application"
+    task :create_smf, :roles => :app do
+      puts "set variables"
+      service_name = application
+      working_directory = current_path
  
-#      template = File.read("config/accelerator/smf_template.erb")
-#      buffer = ERB.new(template).result(binding)
+      template = File.read("config/accelerator/smf_template.erb")
+      buffer = ERB.new(template).result(binding)
  
-#      put buffer, "#{shared_path}/#{application}-smf.xml"
+      put buffer, "#{shared_path}/#{application}-smf.xml"
  
-#      sudo "svccfg import #{shared_path}/#{application}-smf.xml"
-#    end
+      sudo "svccfg import #{shared_path}/#{application}-smf.xml"
+    end
  
     desc "Creates an Apache 2.2 compatible virtual host configuration file"
     task :create_vhost, :roles => :web do
@@ -22,10 +22,10 @@ Capistrano::Configuration.instance(:must_exist).load do
         public_ip = data.gsub(/[\r\n]/, "")
       end
  
-#      cluster_info = YAML.load(File.read('config/mongrel_cluster.yml'))
+      cluster_info = YAML.load(File.read('config/mongrel_cluster.yml'))
  
-#      start_port = cluster_info['port'].to_i
-#      end_port = start_port + cluster_info['servers'].to_i - 1
+      start_port = cluster_info['port'].to_i
+      end_port = start_port + cluster_info['servers'].to_i - 1
       public_path = "#{current_path}/public"
  
       template = File.read("config/accelerator/apache_vhost.erb")
@@ -49,14 +49,12 @@ Capistrano::Configuration.instance(:must_exist).load do
  
     desc "Stops the application"
     task :smf_stop, :roles => :app do
-      #sudo "svcadm disable /network/mongrel/#{application}-production"
-      sudo "svcadm restart apache"
+      sudo "svcadm disable /network/mongrel/#{application}-production"
     end
  
     desc "Starts the application"
     task :smf_start, :roles => :app do
-      #sudo "svcadm enable -r /network/mongrel/#{application}-production"
-      sudo "svcadm restart apache"
+      sudo "svcadm enable -r /network/mongrel/#{application}-production"
     end
  
     desc "Restarts the application"
@@ -67,7 +65,7 @@ Capistrano::Configuration.instance(:must_exist).load do
  
     desc "Deletes the configuration"
     task :smf_delete, :roles => :app do
-      # sudo "svccfg delete /network/mongrel/#{application}-production"
+      sudo "svccfg delete /network/mongrel/#{application}-production"
     end
  
     desc "Shows all Services"
