@@ -1,6 +1,6 @@
 class EffortsController < ApplicationController
 
-  before_filter :load_business_and_assign_to_user
+  before_filter :current_business
 
   # GET /efforts
   # GET /efforts.xml

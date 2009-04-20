@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   
-  before_filter :load_business_and_assign_to_user
+  before_filter :current_business
     
   # GET /projects
   # GET /projects.xml

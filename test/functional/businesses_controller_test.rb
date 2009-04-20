@@ -34,12 +34,6 @@ class BusinessesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-# => See bellow, it should fail... whilst this still passes
-#  def test_should_fail_get_edit_if_user_is_not_associated_with_the_business
-#    get :edit, :id => businesses(:penmach).id
-#    assert_response :success
-#  end  
-
   def test_should_update_business
     put :update, :id => businesses(:snbstyle).id, :business => {
       :id => businesses(:snbstyle).id,
@@ -52,7 +46,7 @@ class BusinessesControllerTest < ActionController::TestCase
 
   def test_should_destroy_business
     assert_difference('Business.count', -1) do
-      delete :destroy, :id => businesses(:otms).id
+      delete :destroy, :id => businesses(:snbstyle).id
     end
     assert_redirected_to businesses_path
   end

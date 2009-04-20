@@ -2,7 +2,7 @@
 	<div id="blue-icons">
 		<%= link_to image_tag('/images/001_01.png', :size => "16x16"), new_user_association_path %>
 	</div>
-	<strong>Users with access to <%= session[:business_name] %> (<%= current_subdomain %>)</strong>
+	<strong>Users with access to <%= current_business.name %> (<%= current_subdomain %>)</strong>
 </div>
 
 <div id="workspace-body">

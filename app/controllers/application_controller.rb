@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
     Time.zone = current_user.time_zone if logged_in?
   end
   
-  def load_business_and_assign_to_user
+  helper_method :current_business
+  def current_business
     # this is useful, when coming back from support center, or development log
     # the user is redirected back to his business
     if session[:business_id] && !current_subdomain
@@ -50,17 +51,15 @@ class ApplicationController < ActionController::Base
     # at this point I must be already redirected. the only other choice
     # is that the user is not associated with any other businesses
     @business = current_user.businesses.find_by_nick(current_subdomain)
-        
-    # session[:user_login] = User.find_by_id(self.current_user.id).login
       
     if @business.nil?
       flash[:error] = "You should select/create a business!"
-      session[:business_name] = "No business!"
       session[:business_id] = nil
       redirect_to :controller => :administration, :action => :index
     else
-      session[:business_name] = @business.name
       session[:business_id] = @business.id
     end
+    
+    @business
   end
 end
