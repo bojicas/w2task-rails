@@ -62,4 +62,4 @@ depend :remote, :gem, :RubyInline, '>=3.6.3'
 #  accelerator.restart_apache
 # end
  
-after :deploy, 'deploy:cleanup'
+# after :deploy, 'deploy:cleanup'
