@@ -47,19 +47,19 @@ depend :remote, :gem, :rake, '>=0.7'
 depend :remote, :gem, :BlueCloth, '>=1.0.0'
 depend :remote, :gem, :RubyInline, '>=3.6.3'
  
-# deploy.task :restart do
-#  accelerator.smf_restart
-#  accelerator.restart_apache
-# end
+ deploy.task :restart do
+  accelerator.smf_restart
+  accelerator.restart_apache
+ end
  
-# deploy.task :start do
-#  accelerator.smf_start
-#  accelerator.restart_apache
-# end
+ deploy.task :start do
+  accelerator.smf_start
+  accelerator.restart_apache
+ end
  
-# deploy.task :stop do
-#  accelerator.smf_stop
-#  accelerator.restart_apache
-# end
+ deploy.task :stop do
+  accelerator.smf_stop
+  accelerator.restart_apache
+ end
  
-# after :deploy, 'deploy:cleanup'
+ after :deploy, 'deploy:cleanup'
