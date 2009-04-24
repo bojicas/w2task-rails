@@ -9,16 +9,10 @@ class EffortsController < ApplicationController
     @page_title = "Efforts"
     session[:page] = 1 unless params[:page]
     
-    @no_of_messages = Message.find(:all, :conditions => { :recipient_id => session[:user_id] }).size
+    @no_of_messages = Message.find(:all, :conditions => { :recipient_id => current_user }).size
+
     @efforts = get_efforts
-    @effort = Effort.new
-    @efforts_size = Effort.find(:all, 
-      :order => "start DESC, created_at DESC, stop DESC, body", 
-      :conditions => ["business_id = ?", @business.id]
-    ).size
-    
-    @total_time_spent_on_efforts = total_time_spent_on_efforts(@business.id)
-      
+
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -142,22 +136,5 @@ class EffortsController < ApplicationController
       :per_page => 10 )
     efforts
   end
-  
-  # find the total time, a user spent on a particular business
-  def total_time_spent_on_efforts(business_id)
-    efforts = Effort.find(:all, 
-      :conditions => { :business_id => business_id }
-    )
-    
-    total_time_spent = 0
-    for effort in efforts
-      if effort.stop
-        total_time_spent += (effort.stop - effort.start)
-      else
-        total_time_spent += (Time.now - effort.start)
-      end
-    end
-    
-    total_time_spent
-  end
+
 end
