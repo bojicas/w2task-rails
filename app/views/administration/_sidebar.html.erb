@@ -3,11 +3,12 @@
 <div style="color:black;"><u>BUSINESSES:</u></div>
 <div style="border-bottom: thin dotted white; width:100%">
 	You are part of <%= pluralize @businesses.size, 'business' -%>.<br />
-	Current business: <%= truncate session[:business_name], :length => 25 %>
+	Current business: <%#= truncate current_business.name, :length => 25 %>
 </div>
 <br />
 <div style="color:black;"><u>USERS:</u></div>
 <div style="border-bottom: thin dotted white; width:100%">
 	<%= truncate session[:business_name], :length => 25 %> has <%= pluralize @users.size, 'user' %><br />
-	<%= link_to "View", :controller => "user_associations" %> user associations table
+	<%= link_to "Associate users with current business", :controller => "user_associations" %><br />
+	<%= link_to "Associate users with projects", :controller => "user_project_associations" %><br />
 </div>

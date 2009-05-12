@@ -3,3 +3,5 @@
 *.log
 tmp.*
 public/avatars/*
+.idea
+.idea/*
