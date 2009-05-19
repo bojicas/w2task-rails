@@ -18,7 +18,7 @@ iframe.ie6_blocker {
 
 .calendar_date_select .cds_buttons {
   text-align:center;
-  padding:5px 0px;
+  padding:5px 0;
 }
 
 .calendar_date_select .cds_footer {
@@ -28,8 +28,8 @@ iframe.ie6_blocker {
 }
 
 .calendar_date_select table {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -38,7 +38,7 @@ iframe.ie6_blocker {
 }
 
 .calendar_date_select .cds_header * {
-  border:0px;
+  border:0;
   background-color:white;  
 }
 

@@ -224,9 +224,9 @@ a, a:visited, a:hover {
 /* SIDEBAR-WRAPPER >>> */
 #sidebar-wrapper {
 	min-width: 265px;
-	margin: 0px;
-	padding: 0px;
-	color: grey;
+	margin: 0;
+	padding: 0;
+	color: gray;
 	float: left;
 }
 /* <<< SIDEBAR-WRAPPER */
