@@ -28,10 +28,30 @@
 	</div>
 </div>
 
+
+
 <% content_for(:sidebar) do -%>
-	<div style="color:black;"><u><strong>EFFORTS SIDEBAR</strong></u></div>
+	<div style="color:black;"><strong>QUICK EFFORT ENTRY</strong></div>
+	<div style="border-bottom: thin dotted white; width:100%">
+		<form name="input" action="html_form_submit.asp" method="get">
+			<textarea rows="3" cols="33">Bojicas is </textarea><br />
+			<div style="float:left; padding-top: 3px;"><%= image_tag('/images/001_43.png', :size => "16x16") %></div>
+			<div style="float:left;"><select>
+				<option value="volvo">Volvo</option>
+				<option value="saab">Saab</option>
+				<option value="mercedes">Mercedes</option>
+				<option value="audi">Audi</option>
+			</select></div>
+			<div style="float:left; padding-top: 3px;"> &nbsp; <%= image_tag('/images/001_62.png', :size => "16x16") %></div>
+			<div style="float:left; padding-top: 2px;"><input type="checkbox"></div>
+			<div style="float:left;"> &nbsp; <input type="submit" value="Punch in" /></div>
+			<br /><br />
+		</form>
+
+	</div>
 	<br />
-	<div style="color:black;"><u>BUSINESS FACTS</u></div>
+	
+	<div style="color:black;"><strong>BUSINESS FACTS</strong></div>
 	<div style="border-bottom: thin dotted white; width:100%">
 		Current business: <%= truncate session[:business_name], :length => 25 %><br />
 		<div style="float:left;"><%= image_tag('/images/001_12.png', :size => "16x16") %> </div>
